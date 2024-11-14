@@ -44,7 +44,18 @@
 
         p {
             color: white;
-            font-size: clamp(1rem, 2vw, 2.25rem);
+            font-size: clamp(1rem, 2vw, 1.61rem);
+        }
+
+        a {
+            text-decoration:underline;
+            color: black;
+            transition: color 0.2s;
+        }
+        a:hover{
+            color:#ffbb00;
+            text-decoration: none;
+
         }
 
         .hero-img {
@@ -72,6 +83,10 @@
             flex-direction: column;
             align-items: center;
             gap: 15px;
+            transition: transform 0.4s;
+        }
+        .grid-item:hover {
+            transform: scale(1.05);
         }
 
         .grid-item img {
@@ -89,6 +104,10 @@
         .grid-item p {
             color: #666;
             font-size: 1rem;
+        }
+        .amazon_app_store{
+            cursor: pointer;
+            text-decoration: none;
         }
 
         .rsvp-button {
@@ -122,6 +141,12 @@
             width: 100%;
             border-radius: 10px;
         }
+        footer a {
+            text-decoration: none;
+        }
+        footer a:hover {
+            color: white;
+        }
 
         .example-submission {
             background-color: white;
@@ -139,11 +164,8 @@
         }
 
         .example-submission p {
-            color: #080924;
-            font-size: 0.75rem;
+            color: #666;
         }
-
-
 
         .requirements-box {
             background-color: white;
@@ -192,7 +214,7 @@
     <div class="container">
         <h1>🍊Juice YSWS🍊</h1>
         <p>You ship an Android app, we ship a Google Developer License</p>
-        <a href="https://forms.gle/qiQzGgYq5KLfPE8g8" target="_blank">
+        <a href="https://forms.hackclub.com/t/4xsx4MYmgXus" target="_blank">
             <button class="rsvp-button">RSVP</button>
         </a>
         <img src="droid.png" alt="Android" class="hero-img">
@@ -203,32 +225,35 @@
                 <h3>Step 1</h3>
                 <p>Create your Android app with passion and creativity</p>
             </div>  
-            <div class="grid-item">
+            <a href="https://developer.amazon.com/apps-and-games" target="_blank" class="amazon_app_store">
+            <div class="grid-item amazon_app_store">
                 <img src="step2.png" alt="Step 2">
                 <h3>Step 2</h3>
                 <p>Submit to Amazon App Store</p>
             </div>
+            </a>
             <div class="grid-item">
                 <img src="step3.png" alt="Step 3">
                 <h3>Step 3</h3>
                 <p>Submit app link to us and get feedback</p>
             </div>
+            <a href="https://developer.android.com/distribute/console" target="_blank" class="amazon_app_store">
             <div class="grid-item">
                 <img src="step4.png" alt="Step 4">
                 <h3>Step 4</h3>
                 <p>Receive your Google Developer License</p>
             </div>
+            </a>    
         </div>
 
         <div class="requirements-box">
             <h2>Requirements</h2>
             <ul class="requirements-list">
                 <li>Must be a fully functional Android application that solves some problem.</li>
-                <li>Must have a minimum of 8 hours of work tracked via WakaTime.</li>
+                <li>Must have a minimum of 8 hours of work tracked via <a href="https://waka.hackclub.com/">Hackatime</a>.</li>
                 <li>App must be successfully published on Amazon App Store.</li>
             </ul>
         </div>
-
         <div class="example-submission">
             <h2>Example Submission</h2>
             <p>Coming soon...</p>
