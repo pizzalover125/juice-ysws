@@ -111,7 +111,7 @@ a:hover {
     gap: 20px;
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
-    overflow: hidden;
+    overflow: visible;
     border: 1px solid rgba(255,255,255,0.05);
     transform-style: preserve-3d;
     opacity: 0;
