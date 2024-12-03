@@ -8,260 +8,76 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap" rel="stylesheet">
     <link rel="icon" href="droid.png" type="image/x-icon">
-
-    <style>
-        * {
-            box-sizing: border-box;
-            padding: 0;
-            margin: 0;
-        }
-
-        body {
-            font-family: Fredoka, Arial, sans-serif;
-            background-color: #ffca68;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: 20px 20px 0 20px;
-        }
-
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 40px;
-            max-width: 800px;
-            width: 100%;
-            margin: 0 auto;
-        }
-
-        h1 {
-            color: white;
-            font-size: clamp(2rem, 8vw, 4.5rem);
-            text-align: center;
-        }
-
-        p {
-            color: white;
-            font-size: clamp(1rem, 2vw, 1.61rem);
-        }
-
-        a {
-            text-decoration:underline;
-            color: black;
-            transition: color 0.2s;
-        }
-        a:hover{
-            color:#ffbb00;
-            text-decoration: none;
-
-        }
-
-        .hero-img {
-            max-width: 100%;
-            height: auto;
-            max-height: 50vh;
-            transform: scale(1.05);
-            object-fit: contain;
-        }
-
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            width: 100%;
-            margin: 40px 0;
-        }
-
-        .grid-item {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-            transition: transform 0.4s;
-        }
-        .grid-item:hover {
-            transform: scale(1.05);
-        }
-
-        .grid-item img {
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 8px;
-        }
-
-        .grid-item h3 {
-            color: #080924;
-            font-size: 1.25rem;
-        }
-
-        .grid-item p {
-            color: #666;
-            font-size: 1rem;
-        }
-        .amazon_app_store{
-            cursor: pointer;
-            text-decoration: none;
-        }
-
-        .rsvp-button {
-            background-color: white;
-            color: #080924;
-            border: none;
-            padding: 15px 40px;
-            font-size: clamp(1rem, 4vw, 1.5rem);
-            font-weight: bold;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: transform 0.4s, background-color 0.2s;
-        }
-
-        .rsvp-button:hover {
-            background-color: #f0f0f0;
-            transform: scale(1.25);
-        }
-
-        .rsvp-button:active {
-            transform: scale(0.95);
-        }
-
-        #footer {
-            background-color: #eebd61;
-            color: white;
-            font-size: 1rem;
-            text-align: center;
-            padding: 20px;
-            margin-top: 40px;
-            width: 100%;
-            border-radius: 10px;
-        }
-        footer a {
-            text-decoration: none;
-        }
-        footer a:hover {
-            color: white;
-        }
-
-        .example-submission {
-            background-color: white;
-            padding: 30px;
-            border-radius: 8px;
-            width: 100%;
-            margin-bottom: 40px;
-        }
-
-        .example-submission h2 {
-            color: #080924;
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .example-submission p {
-            color: #666;
-        }
-
-        .requirements-box {
-            background-color: white;
-            padding: 30px;
-            border-radius: 8px;
-            width: 100%;
-            margin-bottom: 40px;
-        }
-
-        .requirements-box h2 {
-            color: #080924;
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .requirements-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .requirements-list li {
-            color: #666;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .requirements-list li::before {
-            content: "•";
-            color: #ffca68;
-            font-size: 1.5rem;
-        }
-
-        @media (max-width: 600px) {
-            .grid-container {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
 </head>
 <body>
-    <div class="container">
-        <h1>🍊Juice YSWS🍊</h1>
-        <p>You ship an Android app, we ship a Google Developer License</p>
-        <a href="https://forms.hackclub.com/t/4xsx4MYmgXus" target="_blank">
-            <button class="rsvp-button">RSVP</button>
-        </a>
-        <img src="droid.png" alt="Android" class="hero-img">
+    <div class="phone-container">
+        <div class="phone-notch"></div>
+        <div class="phone-content">
+            <div class="container">
+                <h1 class="scroll-animation initial">Juice YSWS</h1>
+                <p class="scroll-animation initial">You ship an Android app, we ship a Google Developer License</p>
+                <a href="https://forms.hackclub.com/t/4xsx4MYmgXus" target="_blank">
+                    <button class="rsvp-button scroll-animation initial">RSVP</button>
+                </a>                
+                <div class="grid-container">
+                    <div class="grid-item scroll-animation">
+                        <div class="step-number">1</div>
+                        <img src="step1.png" alt="Step 1">
+                        <h3>Create Your App</h3>
+                        <p>Build your Android app with passion and creativity</p>
+                    </div>  
+                    <a href="https://developer.amazon.com/apps-and-games" target="_blank" class="amazon_app_store">
+                        <div class="grid-item scroll-animation">
+                            <div class="step-number">2</div>
+                            <img src="step2.png" alt="Step 2">
+                            <h3>Submit to Store</h3>
+                            <p>Submit to Amazon App Store</p>
+                        </div>
+                    </a>
+                    <div class="grid-item scroll-animation">
+                        <div class="step-number">3</div>
+                        <img src="step3.png" alt="Step 3">
+                        <h3>Get Feedback</h3>
+                        <p>Submit app link to us and get feedback</p>
+                    </div>
+                    <a href="https://developer.android.com/distribute/console" target="_blank" class="amazon_app_store">
+                        <div class="grid-item scroll-animation">
+                            <div class="step-number">4</div>
+                            <img src="step4.png" alt="Step 4">
+                            <h3>Receive License</h3>
+                            <p>Get your Google Developer License</p>
+                        </div>
+                    </a>    
+                </div>
 
-        <div class="grid-container">
-            <div class="grid-item">
-                <img src="step1.png" alt="Step 1">
-                <h3>Step 1</h3>
-                <p>Create your Android app with passion and creativity</p>
-            </div>  
-            <a href="https://developer.amazon.com/apps-and-games" target="_blank" class="amazon_app_store">
-            <div class="grid-item amazon_app_store">
-                <img src="step2.png" alt="Step 2">
-                <h3>Step 2</h3>
-                <p>Submit to Amazon App Store</p>
+                <div class="requirements-box scroll-animation">
+                    <h2>Requirements</h2>
+                    <ul class="requirements-list">
+                        <li>Must have a minimum of 8 hours of work tracked via <a href="https://waka.hackclub.com/">Hackatime</a>.</li>
+                        <li>App must be successfully published on Amazon App Store.</li>
+                    </ul>
+                </div>
+                
+                <div class="example-submission scroll-animation">
+                    <h2>Example Submission</h2>
+                    <p>Coming soon...</p>
+                </div>
             </div>
-            </a>
-            <div class="grid-item">
-                <img src="step3.png" alt="Step 3">
-                <h3>Step 3</h3>
-                <p>Submit app link to us and get feedback</p>
-            </div>
-            <a href="https://developer.android.com/distribute/console" target="_blank" class="amazon_app_store">
-            <div class="grid-item">
-                <img src="step4.png" alt="Step 4">
-                <h3>Step 4</h3>
-                <p>Receive your Google Developer License</p>
-            </div>
-            </a>    
         </div>
-
-        <div class="requirements-box">
-            <h2>Requirements</h2>
-            <ul class="requirements-list">
-                <li>Must be a fully functional Android application that solves some problem.</li>
-                <li>Must have a minimum of 8 hours of work tracked via <a href="https://waka.hackclub.com/">Hackatime</a>.</li>
-                <li>App must be successfully published on Amazon App Store.</li>
-            </ul>
-        </div>
-        <div class="example-submission">
-            <h2>Example Submission</h2>
-            <p>Coming soon...</p>
+        <div class="android-navigation">
+            <button>&#x25C0;</button>
+            <button>&#x25A0;</button>
+            <button>&#x25B6;</button>
         </div>
     </div>
-    
-    <footer id="footer">
-        <p>Made by <a href="https://pizzalover125.tech/" target="_blank">@pizzalover125</a>. Orange Juice > Apple Juice</p>
-    </footer>
+
+    <div class="progress-bar">
+        <div class="progress-dot"></div>
+        <div class="progress-dot"></div>
+        <div class="progress-dot"></div>
+        <div class="progress-dot"></div>
+    </div>
 </body>
 </html>
