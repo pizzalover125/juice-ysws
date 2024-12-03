@@ -2,16 +2,22 @@ document.addEventListener('DOMContentLoaded', function() {
     const phoneContainer = document.querySelector('.phone-container');
     const phoneContent = document.querySelector('.phone-content');
     const gridContainer = document.querySelector('.grid-container');
+    let lastScrollPosition = 0;
     
     phoneContent.addEventListener('scroll', () => {
+        const currentScrollPosition = phoneContent.scrollTop;
         const gridTop = gridContainer.getBoundingClientRect().top;
         
-        // If the grid is about to come into view (or is in view)
-        if (gridTop < window.innerHeight * 0.8) {
+        // If scrolling down and grid is about to come into view
+        if (currentScrollPosition > lastScrollPosition && gridTop < window.innerHeight * 0.8) {
             phoneContainer.classList.add('expanded');
-        } else {
+        }
+        // If scrolling up and grid is out of view
+        else if (currentScrollPosition < lastScrollPosition && gridTop > window.innerHeight * 0.8) {
             phoneContainer.classList.remove('expanded');
         }
+        
+        lastScrollPosition = currentScrollPosition;
     });
 
     // Add scroll animation
@@ -31,6 +37,27 @@ document.addEventListener('DOMContentLoaded', function() {
                 displayScrollElement(el);
             }
         });
+    });
+
+    // Parallax effect code
+    const parallaxElements = document.querySelectorAll('.parallax-element');
+    const parallaxBg = document.querySelector('.parallax-bg');
+    
+    document.addEventListener('mousemove', (e) => {
+        const mouseX = e.clientX / window.innerWidth;
+        const mouseY = e.clientY / window.innerHeight;
+        
+        parallaxElements.forEach(element => {
+            const speed = element.dataset.speed || 0.1;
+            const x = (mouseX - 0.5) * speed * 100;
+            const y = (mouseY - 0.5) * speed * 100;
+            element.style.transform = `translate(${x}px, ${y}px)`;
+        });
+        
+        if (parallaxBg) {
+            parallaxBg.style.setProperty('--mouse-x', `${mouseX * 100}%`);
+            parallaxBg.style.setProperty('--mouse-y', `${mouseY * 100}%`);
+        }
     });
 });
 
