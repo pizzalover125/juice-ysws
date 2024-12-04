@@ -111,7 +111,7 @@ a:hover {
     gap: 20px;
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
-    overflow: hidden;
+    overflow: visible;
     border: 1px solid rgba(255,255,255,0.05);
     transform-style: preserve-3d;
     opacity: 0;
@@ -158,8 +158,8 @@ a:hover {
 
 .step-number {
     position: absolute;
-    top: -15px;
-    left: -15px;
+    top: 6px;
+    left: 6px;
     background: linear-gradient(45deg, #ffca68, #ff9f43);
     width: 35px;
     height: 35px;
@@ -447,6 +447,7 @@ footer a:hover {
         #242424 50%,
         #2a2a2a 100%
     );
+    z-index: 1;
     border: 1px solid rgba(255,255,255,0.05);
     height: 20px;
     width: 100%;
@@ -474,28 +475,65 @@ footer a:hover {
 }
 
 .android-navigation {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 40px;
-    background: #1e1e1e;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    border-top: 1px solid rgba(255,255,255,0.1);
+    gap: 15px;
+    background: rgba(30, 30, 30, 0.85);
+    backdrop-filter: blur(12px);
+    padding: 12px 25px;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 202, 104, 0.1);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
 }
 
 .android-navigation button {
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 20px;
+    background: linear-gradient(145deg, #242424, #1a1a1a);
+    border: 1px solid rgba(255, 202, 104, 0.15);
+    color: #ffca68;
+    font-size: 18px;
     cursor: pointer;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
 }
 
-.android-navigation button:focus {
-    outline: none;
+.android-navigation button:hover {
+    background: linear-gradient(145deg, #2a2a2a, #242424);
+    transform: translateY(-3px);
+    border-color: rgba(255, 202, 104, 0.3);
+    box-shadow: 0 5px 15px rgba(255, 202, 104, 0.15);
+    color: #fff;
+}
+
+.android-navigation button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(255, 202, 104, 0.1);
+}
+
+.android-navigation button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 202, 104, 0.2) 0%, transparent 70%);
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.4s ease;
+}
+
+.android-navigation button:hover::after {
+    transform: translate(-50%, -50%) scale(1.5);
 }
 
 body::after {
@@ -552,4 +590,30 @@ body::after {
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     overflow: hidden;
+}
+
+.parallax-wrapper {
+    position: relative;
+    overflow: hidden;
+    transform-style: preserve-3d;
+}
+
+.parallax-element {
+    transition: transform 0.3s cubic-bezier(0.2, 0, 0.2, 1);
+    will-change: transform;
+}
+
+.parallax-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: radial-gradient(
+        circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(255, 202, 104, 0.1) 0%,
+        rgba(18, 18, 18, 0) 50%
+    );
+    transition: all 0.3s ease;
 }
