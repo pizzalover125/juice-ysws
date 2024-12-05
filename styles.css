@@ -134,27 +134,49 @@
 }
 
 .circle {
-  position: relative;
-  min-width: 200px;
-  min-height: 200px;
-  border-radius: 50%;
-  display: none;
+    position: relative;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto;
+}
 
-  box-shadow: #45ff93 0px 0px 50px 2px;
+.circle-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    text-align: center;
+    color: #48bb78;
+    text-shadow: 0 0 10px #48bb78;
+    font-size: 20px;
+    transform-origin: bottom center;
 }
 
 .element {
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
-  position: absolute;
-  width: 8%;
-  height: 8%;
-  color: #48bb78;
-  font-size: 16px;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    position: absolute;
+    color: #48bb78;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    width: auto;
+    height: auto;
+    padding: 10px;
+    transform-origin: center;
+}
+
+#el1 { --angle: 0deg; }
+#el2 { --angle: 72deg; }
+#el3 { --angle: 144deg; }
+#el4 { --angle: 216deg; }
+#el5 { --angle: 288deg; }
+
+.element {
+    top: 50%;
+    left: 50%;
+    transform: rotate(var(--angle)) translate(0, -150%) rotate(calc(-1 * var(--angle)));
 }
 
 .plts{
@@ -641,4 +663,44 @@
     justify-content: center;
     align-items: center;
     margin-top: 20px;
+}
+
+#pg2cont {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.circle {
+  position: relative;
+  width: 75vw;
+  height: 75vw;
+  max-width: 540px;
+  max-height: 540px;
+  border-radius: 50%;
+  background-color: black;
+  border: 2px solid green;
+  margin: 0 auto;
+  z-index: 10;
+}
+
+#innercircle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  background-color: #48bb78;
+  border-radius: 50%;
+  opacity: 0;
+  z-index: 20;
+}
+
+#techss {
+  position: absolute;
+  opacity: 0;
+  z-index: 5;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }

@@ -150,90 +150,92 @@ gsap.to("svg path", {
 });
 let q = 0
 
-  gsap.to(".circle",{
-    rotate: "360deg",
-    scrollTrigger:{
-      trigger: "#pg2cont",
-      start: "top top",
-      end: "bottom bottom",
-      scrub: 1,
-    },
-    ease: "linear"
-  })
-  gsap.to("#innercircle",{
-    width:"100%",
-    height:"100%",
-    opacity:1,
-    scrollTrigger:{
-      trigger: "#pg2cont",
-      start: "0% top",
-      end: "100% top",
-      scrub: 0.1,
-    },
-    ease: "linear"
-  })
+gsap.registerPlugin(ScrollTrigger);
 
-  if(screen.width>768){
-  gsap.to("#techss",{
-    translateY:"4vh",
-    opacity:1,
-    scale:1,
-    scrollTrigger:{
+gsap.to(".circle", {
+  rotate: "360deg",
+  scrollTrigger: {
+    trigger: "#pg2cont",
+    start: "top top",
+    end: "bottom bottom",
+    scrub: 1,
+  },
+  ease: "linear"
+});
+
+gsap.to("#innercircle", {
+  width: "100%",
+  height: "100%",
+  opacity: 1,
+  scrollTrigger: {
+    trigger: "#pg2cont",
+    start: "0% top",
+    end: "100% top",
+    scrub: 0.1,
+  },
+  ease: "linear"
+});
+
+if (screen.width > 768) {
+  gsap.to("#techss", {
+    translateY: "4vh",
+    opacity: 1,
+    scale: 1,
+    scrollTrigger: {
       trigger: "#pg2cont",
       start: "0% top",
       end: "100% top",
       scrub: 0.1,
     },
-    stagger:0.55
-  })
-}else if(screen.width<768){
-  document.querySelector(".circle").style.zIndex = "1000"
-  gsap.to("#techss",{
-    translateY:"-45vh",
-    opacity:1,
-    scale:1,
-    scrollTrigger:{
+    stagger: 0.55
+  });
+} else {
+  gsap.to("#techss", {
+    translateY: "-45vh",
+    opacity: 1,
+    scale: 1,
+    scrollTrigger: {
       trigger: "#pg2cont",
       start: "0% top",
       end: "100% top",
       scrub: 0.1,
     },
-    stagger:0.55
-  })
+    stagger: 0.55
+  });
 }
 
-  const dibbas = document.querySelectorAll('.dibbas');
+const dibbas = document.querySelectorAll('.dibbas');
 
-  dibbas.forEach(dibba => {
-    dibba.addEventListener('mouseenter', (e) => {
-      const rect = dibba.getBoundingClientRect();
-      const circle = dibba.querySelector('.absolute');      
+dibbas.forEach(dibba => {
+  dibba.addEventListener('mouseenter', (e) => {
+    const rect = dibba.getBoundingClientRect();
+    const circle = dibba.querySelector('.absolute');      
 
-      const x = ((e.clientX - rect.left) / rect.width) * 100;
-      const y = ((e.clientY - rect.top) / rect.height) * 100;
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
 
-      circle.style.width = '0px';
-      circle.style.opacity = 1;
-      circle.style.height = '0px';
-      circle.style.left = x + '%';
-      circle.style.top = y + '%';
+    circle.style.width = '0px';
+    circle.style.opacity = 1;
+    circle.style.height = '0px';
+    circle.style.left = x + '%';
+    circle.style.top = y + '%';
 
-      requestAnimationFrame(() => {
-        circle.style.transition = 'width 1s ease-in, height 1s ease-in';
-        circle.style.width = '3000px';
-        circle.style.height = '3000px';
-      });
-    });
-
-    dibba.addEventListener('mouseleave', (e) => {
-      const circle = dibba.querySelector('.absolute');
-
-      circle.style.transition = 'width 0.3s ease-in, height 0.3s ease-in';
-      circle.style.width = '0px';
-      circle.style.height = '0px';
-      circle.style.opacity = 0;
+    requestAnimationFrame(() => {
+      circle.style.transition = 'width 1s ease-in, height 1s ease-in';
+      circle.style.width = '3000px';
+      circle.style.height = '3000px';
     });
   });
+
+  dibba.addEventListener('mouseleave', (e) => {
+    const circle = dibba.querySelector('.absolute');
+
+    circle.style.transition = 'width 0.3s ease-in, height 0.3s ease-in';
+    circle.style.width = '0px';
+    circle.style.height = '0px';
+    circle.style.opacity = 0;
+  });
+});
 
 const masterTl = gsap.timeline({
     scrollTrigger: {
@@ -496,3 +498,10 @@ function navigateToCard(cardNumber) {
         }, 0.3);
     }
 }
+
+gsap.to(".element", {
+    opacity: 1,
+    stagger: 0.2,
+    duration: 1,
+    ease: "power2.out"
+});
