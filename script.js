@@ -434,7 +434,7 @@ window.addEventListener('load', () => {
 
 var swiper = new Swiper(".mySwiper", {
   slidesPerView: 1,
-  spaceBetween: 30,
+  spaceBetween: 10,
   loop: true,
   navigation: {
     nextEl: ".swiper-button-next",
@@ -504,4 +504,19 @@ gsap.to(".element", {
     stagger: 0.2,
     duration: 1,
     ease: "power2.out"
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const elements = document.querySelectorAll('.element');
+    elements.forEach((el, index) => {
+        el.style.setProperty('--angle', `${index * (360 / elements.length)}deg`);
+    });
+
+    gsap.to(elements, {
+        rotation: 360,
+        transformOrigin: "center center",
+        repeat: -1,
+        duration: 20,
+        ease: "linear"
+    });
 });

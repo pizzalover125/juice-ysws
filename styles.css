@@ -140,6 +140,9 @@
     border-radius: 50%;
     overflow: hidden;
     margin: 0 auto;
+    background-color: black;
+    border: 2px solid green;
+    box-shadow: 0 0 20px 5px green;
 }
 
 .circle-text {
@@ -159,21 +162,12 @@
     position: absolute;
     color: #48bb78;
     text-align: center;
-    opacity: 0;
+    opacity: 1;
     transition: opacity 0.5s ease-in-out;
     width: auto;
     height: auto;
     padding: 10px;
     transform-origin: center;
-}
-
-#el1 { --angle: 0deg; }
-#el2 { --angle: 72deg; }
-#el3 { --angle: 144deg; }
-#el4 { --angle: 216deg; }
-#el5 { --angle: 288deg; }
-
-.element {
     top: 50%;
     left: 50%;
     transform: rotate(var(--angle)) translate(0, -150%) rotate(calc(-1 * var(--angle)));
@@ -703,4 +697,9 @@
   opacity: 0;
   z-index: 5;
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+#imgcont img {
+    border: 2px solid green;
+    border-radius: 10px;
 }
