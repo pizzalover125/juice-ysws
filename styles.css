@@ -135,14 +135,17 @@
 
 .circle {
     position: relative;
-    width: 300px;
-    height: 300px;
+    width: 75vw;
+    height: 75vw;
+    max-width: 540px;
+    max-height: 540px;
     border-radius: 50%;
     overflow: hidden;
     margin: 0 auto;
     background-color: black;
     border: 2px solid green;
     box-shadow: 0 0 20px 5px green;
+    z-index: 10;
 }
 
 .circle-text {
@@ -156,6 +159,16 @@
     text-shadow: 0 0 10px #48bb78;
     font-size: 20px;
     transform-origin: bottom center;
+    animation: textGlow 2s infinite alternate;
+}
+
+@keyframes textGlow {
+    from {
+        text-shadow: 0 0 10px #48bb78;
+    }
+    to {
+        text-shadow: 0 0 30px #48bb78;
+    }
 }
 
 .element {
@@ -167,9 +180,11 @@
   transform-origin: center;
   top: 50%;
   left: 50%;
-  /* Fixed distance from center */
-  transform: rotate(var(--angle)) translateY(-150px) rotate(calc(-1 * var(--angle)));
+  transform: rotate(var(--angle)) translateY(-150px);
   transition: opacity 0.3s ease-in-out;
+  font-size: 16px;
+  white-space: nowrap;
+  z-index: 20;
 }
 
 .plts{
@@ -701,4 +716,16 @@
 #imgcont img {
     border: 2px solid green;
     border-radius: 10px;
+}
+
+.text-visible {
+  color: #48bb78;
+  opacity: 1;
+  text-shadow: 0 0 10px rgba(72, 187, 120, 0.5);
+}
+
+/* Remove any potential text-hiding properties */
+*::selection {
+  background-color: rgba(72, 187, 120, 0.2);
+  color: inherit;
 }

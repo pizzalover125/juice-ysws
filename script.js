@@ -611,3 +611,14 @@ gsap.utils.toArray('.carad').forEach(card => {
     });
   });
 });
+
+window.addEventListener('load', () => {
+  document.querySelectorAll('.element').forEach(el => {
+    el.classList.add('text-visible');
+    el.style.opacity = '1';
+    el.style.visibility = 'visible';
+  });
+  
+  document.querySelector('.circle').style.display = 'block';
+  document.querySelector('.circle').style.visibility = 'visible';
+});
