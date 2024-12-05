@@ -287,7 +287,7 @@ masterTl
     })
     .to("#imgcont", {
         height: "600px",
-        width: "70%",
+        width: "300px",
         border: "12px solid black",
         borderRadius: "24px",
         boxShadow: "0px 0px 30px 2px #48bb78",
