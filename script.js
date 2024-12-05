@@ -269,12 +269,6 @@ gsap.set("#card1, #card2, #card3, #card4", {
 });
 
 masterTl
-    .to(".intros", {
-        opacity: 1,
-        stagger: 0.1,
-        duration: 0.5,
-        ease: "power2.out"
-    })
     .to("#heading", {
         opacity: 1,
         duration: 0.5
@@ -284,7 +278,13 @@ masterTl
         opacity: 0,
         duration: 1
     }, "+=1")
-
+    .to({}, {duration: 0.3})
+    .to(".intros", {
+        opacity: 1,
+        stagger: 0.1,
+        duration: 0.5,
+        ease: "power2.out"
+    })
     .to("#imgcont", {
         height: "600px",
         width: "70%",
@@ -389,16 +389,41 @@ ScrollTrigger.create({
   once: true
 });
 
+let lastRealIndex = 0;
+
 function showTextForImage(imageNumber) {
+  // Hide all text elements first
   document.querySelectorAll('.element').forEach(el => {
     el.style.opacity = '0';
     el.style.transition = 'opacity 0.3s ease-in-out';
   });
 
-  const elements = document.querySelectorAll(`.text-group-${imageNumber}`);
-  elements.forEach(el => {
-    el.style.opacity = '1';
-  });
+  if (imageNumber < lastRealIndex) {
+    const elements = document.querySelectorAll(`.text-group-${imageNumber}`);
+    
+    const previousElements = document.querySelectorAll(`.text-group-${lastRealIndex}`);
+    previousElements.forEach(el => {
+      el.style.opacity = '0';
+    });
+
+    setTimeout(() => {
+      elements.forEach(el => {
+        el.style.opacity = '1';
+      });
+    }, 300);
+
+    const introElements = document.querySelectorAll('.intros');
+    introElements.forEach(el => {
+      el.style.opacity = '1';
+    });
+  } else {
+    const introElements = document.querySelectorAll('.intros');
+    introElements.forEach(el => {
+      el.style.opacity = '0';
+    });
+  }
+
+  lastRealIndex = imageNumber;
 }
 
 window.addEventListener('load', () => {
@@ -424,3 +449,50 @@ var swiper = new Swiper(".mySwiper", {
     }
   }
 });
+
+function openFirstCard() {
+    gsap.to("#card1", {
+        opacity: 1,
+        translateY: "0",
+        rotateZ: "7deg",
+        duration: 1,
+        ease: "power2.out"
+    });
+}
+
+document.querySelectorAll('.android-navigation button').forEach(button => {
+    button.addEventListener('click', openFirstCard);
+});
+
+function navigateToCard(cardNumber) {
+    const cards = ["#card1", "#card2", "#card3", "#card4"];
+    const tl = gsap.timeline();
+    
+    cards.forEach(card => {
+        tl.to(card, {
+            opacity: 0,
+            translateY: "200vh",
+            duration: 0.3,
+            ease: "power2.inOut"
+        }, 0);
+    });
+    
+    if (cardNumber === 1) {
+        tl.to("#card1", {
+            opacity: 1,
+            translateY: "0",
+            rotateZ: "7deg",
+            duration: 1,
+            ease: "power2.out"
+        }, 0.3);
+    } else {
+        tl.to(["#card2", "#card3", "#card4"], {
+            opacity: 1,
+            translateY: "0",
+            rotateZ: (index) => ["-9deg", "2deg", "-1deg"][index],
+            duration: 0.5,
+            stagger: 0.1,
+            ease: "power2.out"
+        }, 0.3);
+    }
+}

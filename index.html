@@ -16,28 +16,77 @@
 </head>
 
 <body>
-    <div id="main" class="max-w-[100vw] bg-[#020202]   w-screen ">
-        <div id="scrollCont" class=" w-screen  h-[200vh] bg-[#020202] relative">
+    <div id="main" class="max-w-[100vw] bg-[#020202] w-screen">
+        <div id="scrollCont" class="w-screen h-[200vh] bg-[#020202] relative">
             <div id="pg1cont" class="h-[100vh] sticky top-0 flex flex-col bg-[#020202] justify-center items-center">
-                <div id="intro" class="text-black orbitron text-center text-7xl absolute fonnt lo top-[10%]">
-                    <span class="opacity-0 intros">I</span><span class="opacity-0 intros">N</span><span class="opacity-0 intros">T</span><span class="opacity-0 intros">R</span><span class="opacity-0 intros">O</span><span class="opacity-0 intros">D</span><span class="opacity-0 intros">U</span><span class="opacity-0 intros">C</span><span class="opacity-0 intros">I</span><span class="opacity-0 intros">N</span><span class="opacity-0 intros">G</span>
+                <div class="text-container relative">
+                    <div id="heading" class="fonnt text-white text-center relative text-6xl">
+                        <span class="text-[#89CFF0]">Not</span> Just <span class="text-[#48bb78]">Another</span> <span class="text-[#712525]">Cider</span>
+                    </div>
+                    <div id="heading" class="fonnt text-white text-center relative text-6xl opacity-30 translate-y-[10px] blur-[2px]">
+                        <span class="text-[#89CFF0]">Not</span> Just <span class="text-[#48bb78]">Another</span> <span class="text-[#712525]">Cider</span>
+                    </div>
+                    
+                    <div class="text-swipe-item text-[#48bb78] orbitron text-6xl text-center absolute top-0 left-0 w-full">
+                        <span class="opacity-0 intros">I</span>
+                        <span class="opacity-0 intros">N</span>
+                        <span class="opacity-0 intros">T</span>
+                        <span class="opacity-0 intros">R</span>
+                        <span class="opacity-0 intros">O</span>
+                        <span class="opacity-0 intros">D</span>
+                        <span class="opacity-0 intros">U</span>
+                        <span class="opacity-0 intros">C</span>
+                        <span class="opacity-0 intros">I</span>
+                        <span class="opacity-0 intros">N</span>
+                        <span class="opacity-0 intros">G</span>
+                    </div>
                 </div>
                 
-                <div id="heading" class="fonnt text-white text-center relative text-6xl">
-                    <span class="text-[#89CFF0]">Not</span> Just <span class="text-[#48bb78]">Another</span> <span class="text-[#712525]">Cider</span>
-                </div>
-                
-                <div id="heading" class="fonnt text-white text-center relative text-6xl opacity-30 translate-y-[10px] blur-[2px]">
-                    <span class="text-[#89CFF0]">Not</span> Just <span class="text-[#48bb78]">Another</span> <span class="text-[#712525]">Cider</span>
-                </div>
-                
-                <div class="text-swipe-item text-[#48bb78] orbitron text-6xl text-center absolute opacity-0">
-                    <span class="opacity-0 intros">I</span><span class="opacity-0 intros">N</span><span class="opacity-0 intros">T</span><span class="opacity-0 intros">R</span><span class="opacity-0 intros">O</span><span class="opacity-0 intros">D</span><span class="opacity-0 intros">U</span><span class="opacity-0 intros">C</span><span class="opacity-0 intros">I</span><span class="opacity-0 intros">N</span><span class="opacity-0 intros">G</span>
-                </div>
-                
-                <div style="box-shadow: 0px 0px 30px 2px #48bb78;" id="imgcont" class="translate-x-[-50px] translate-y-[5px] z-[3] absolute bg-[#48bb78] overflow-hidden rounded-3xl border-[12px] border-black w-[10%] flex justify-center items-center h-[0%] ">
-                    <div class="absolute top-0 left-[50%] translate-x-[-50%] w-[40%] h-[15px] bg-black rounded-b-xl z-10"></div>
-                    <img class="absolute h-[100%] w-[100%] object-cover" src="images/mainpg.png" alt="">
+                <div style="box-shadow: 0px 0px 30px 2px #48bb78;" id="imgcont" class="translate-x-[-50px] translate-y-[5px] z-[3] absolute bg-[#020202] overflow-hidden rounded-3xl border-[12px] border-black w-[10%] flex justify-center items-center h-[0%]">
+                    <div class="absolute top-0 left-0 w-full h-[25px] bg-black flex justify-between items-center px-4 z-20">
+                        <div class="flex items-center gap-2">
+                            <span class="text-white text-xs">12:00</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-white text-xs">📶 🔋</span>
+                        </div>
+                    </div>
+                    
+                    <div class="absolute inset-0 mt-[25px] flex flex-col items-center justify-start bg-[#020202] overflow-y-auto">
+                        <div class="w-full bg-[#48bb78] py-4 px-2 flex items-center justify-between">
+                            <h2 class="text-black text-2xl font-bold orbitron">Dessert</h2>
+                            <div class="flex gap-2">
+                                <span class="text-black">⋮</span>
+                            </div>
+                        </div>
+
+                        <div class="w-full p-4 flex flex-col gap-4">
+                            <div class="w-20 h-20 mx-auto mb-2 rounded-2xl overflow-hidden border-2 border-[#48bb78]">
+                                <img src="images/mainpg.png" alt="Dessert Icon" class="w-full h-full object-cover">
+                            </div>
+
+                            <div class="bg-black/30 rounded-xl p-4 border border-[#48bb78]/30">
+                                <p class="text-white text-sm leading-relaxed text-center">
+                                    Creating an Android app is like dessert—sweet satisfaction that lasts, unlike cider, and with $25 for your developer license, you get to savor the success by sharing it with the world!
+                                </p>
+                            </div>
+
+                            <div class="flex gap-2 justify-center mt-2">
+                                <button class="bg-[#48bb78] text-black px-4 py-2 rounded-full text-sm font-medium">
+                                    Install
+                                </button>
+                                <button class="border border-[#48bb78] text-[#48bb78] px-4 py-2 rounded-full text-sm font-medium">
+                                    Share
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="absolute bottom-0 left-0 w-full h-[48px] bg-black flex justify-center items-center gap-8 z-20">
+                        <button onclick="navigateToCard(1)" class="android-nav-btn w-[20px] h-[20px] border-2 border-[#48bb78] rounded-full cursor-pointer"></button>
+                        <button onclick="navigateToCard(2)" class="android-nav-btn w-[20px] h-[2px] bg-[#48bb78] rounded-full cursor-pointer"></button>
+                        <button onclick="navigateToCard(3)" class="android-nav-btn w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-b-[15px] border-b-[#48bb78] transform rotate-180 cursor-pointer"></button>
+                    </div>
                 </div>
                 <div class="text-swipe-container absolute text-6xl" style="top: 50%; left: 50%; transform: translate(-50%, -50%);">
 

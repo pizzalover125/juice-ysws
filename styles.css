@@ -629,3 +629,16 @@
 .step-content:hover {
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
+
+.intros {
+    font-family: -apple-system, BlinkMacSystemFont; 
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+#introText {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
