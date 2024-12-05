@@ -159,18 +159,17 @@
 }
 
 .element {
-    position: absolute;
-    color: #48bb78;
-    text-align: center;
-    opacity: 1;
-    transition: opacity 0.5s ease-in-out;
-    width: auto;
-    height: auto;
-    padding: 10px;
-    transform-origin: center;
-    top: 50%;
-    left: 50%;
-    transform: rotate(var(--angle)) translate(0, -150%) rotate(calc(-1 * var(--angle)));
+  position: absolute;
+  color: #48bb78;
+  text-align: center;
+  opacity: 1;
+  padding: 10px;
+  transform-origin: center;
+  top: 50%;
+  left: 50%;
+  /* Fixed distance from center */
+  transform: rotate(var(--angle)) translateY(-150px) rotate(calc(-1 * var(--angle)));
+  transition: opacity 0.3s ease-in-out;
 }
 
 .plts{

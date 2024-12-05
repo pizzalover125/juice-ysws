@@ -508,15 +508,106 @@ gsap.to(".element", {
 
 document.addEventListener('DOMContentLoaded', () => {
     const elements = document.querySelectorAll('.element');
+    const totalElements = elements.length;
+    
     elements.forEach((el, index) => {
-        el.style.setProperty('--angle', `${index * (360 / elements.length)}deg`);
+        const angle = (index * (360 / totalElements));
+        el.style.setProperty('--angle', `${angle}deg`);
+        
+        el.style.opacity = '1';
     });
 
-    gsap.to(elements, {
+    gsap.to('.element', {
         rotation: 360,
         transformOrigin: "center center",
-        repeat: -1,
         duration: 20,
-        ease: "linear"
+        repeat: -1,
+        ease: "none",
+        stagger: {
+            each: 0,
+            from: "start"
+        }
     });
+});
+
+gsap.utils.toArray('.android-nav-btn').forEach(btn => {
+  btn.addEventListener('mouseenter', () => {
+    gsap.to(btn, {
+      scale: 1.2,
+      duration: 0.3,
+      ease: "back.out(1.7)"
+    });
+  });
+  
+  btn.addEventListener('mouseleave', () => {
+    gsap.to(btn, {
+      scale: 1,
+      duration: 0.2,
+      ease: "power2.out"
+    });
+  });
+});
+
+gsap.from(".step-item", {
+  scrollTrigger: {
+    trigger: "#pg3_2cont",
+    start: "top 80%",
+    end: "bottom 20%",
+    scrub: 1
+  },
+  y: 100,
+  opacity: 0,
+  stagger: 0.2,
+  ease: "power2.out"
+});
+
+gsap.to(".circle", {
+  boxShadow: "0 0 30px 10px green",
+  duration: 2,
+  repeat: -1,
+  yoyo: true,
+  ease: "sine.inOut"
+});
+
+gsap.to("#main", {
+  backgroundPosition: `50% ${window.innerHeight/2}px`,
+  ease: "none",
+  scrollTrigger: {
+    trigger: "#main",
+    start: "top top",
+    end: "bottom top",
+    scrub: true
+  }
+});
+
+gsap.utils.toArray('.text-content').forEach(text => {
+  gsap.from(text, {
+    scrollTrigger: {
+      trigger: text,
+      start: "top 80%",
+      end: "bottom 20%"
+    },
+    duration: 1,
+    y: 50,
+    opacity: 0,
+    ease: "power2.out"
+  });
+});
+
+gsap.utils.toArray('.carad').forEach(card => {
+  card.addEventListener('mouseenter', () => {
+    gsap.to(card, {
+      scale: 1.05,
+      duration: 0.3,
+      ease: "power2.out"
+    });
+  });
+  
+  card.addEventListener('mouseleave', () => {
+    gsap.to(card, {
+      scale: 1,
+      duration: 0.2,
+      ease: "power2.in"
+    });
+  });
 });
