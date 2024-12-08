@@ -322,7 +322,7 @@ const stepsTimeline = gsap.timeline({
   scrollTrigger: {
     trigger: "#pg1cont",
     start: "85% top",
-    end: "400% top",
+    end: "500% top",
     scrub: 2,
     pin: true,
     pinSpacing: true,
@@ -384,7 +384,7 @@ stepsTimeline
     scale: 1,
     y: -20,
     opacity: 1,
-    duration: 0.5
+    duration: 0.8
   })
   
   .to(".step-item:nth-child(2)", {
@@ -431,7 +431,7 @@ stepsTimeline
     y: -150,
     opacity: 0,
     duration: 0.8
-  })
+  }, "+=1")
   
   .to(["#pg3cont", "#ExtraSpace"], {
     opacity: 1,
