@@ -30,98 +30,31 @@ window.addEventListener('load', () => {
 var tl = gsap.timeline();
 
 function baadwaale() {
-  document.querySelector("#pg-4").hidden = false;
-
-  // Check if elements exist before creating animations
-  const texxtsElements = document.querySelectorAll('.texxts');
-  const dibbasElements = document.querySelectorAll('.dibbas');
-
-  gsap.to("#allcont", {
-    translateX: "-200vw",
+  gsap.from(".step-item", {
     scrollTrigger: {
-      trigger: "#pg3cont",
-      start: "33.33% bottom",
-      end: "50% bottom",
-      scrub: 0.1,
-    },
-  });
-
-  gsap.to(".circle", {
-    translateY: "0%",
-    duration: 0.7,
-    ease: "power3.out",
-  });
-
-  // Only create animation if elements exist
-  if (texxtsElements.length > 0) {
-    gsap.to(".texxts", {
-      scrollTrigger: {
-        trigger: "#pg3cont",
-        start: "top 70%",
-        end: "bottom 20%",
-      },
-      stagger: 0.1,
-      opacity: 1,
-      y: 0 + "px",
-    });
-  }
-
-  gsap.to("#allcont", {
-    scrollTrigger: {
-      trigger: "#pg3cont",
-      start: "25% 70%",
-      end: "27% 70%",
-      scrub: 0.2,
-    },
-    backgroundColor: "#48bb78",
-  });
-
-  if (dibbasElements.length > 0) {
-    gsap.to(".dibbas", {
-      scrollTrigger: {
-        trigger: "#pg3cont",
-        start: "25% 70%",
-        end: "27% 70%",
-        scrub: 0.2,
-      },
-      backgroundColor: "#48bb78",
-    });
-  }
-
-  gsap.to("#pg3_2cont", {
-    scrollTrigger: {
-      trigger: "#pg3cont",
-      start: "25% center",
-      end: "30% center",
-      scrub: 1,
-      onEnter: () => {
-        document.querySelector("#pg3_2cont").scrollIntoView({ behavior: "smooth" });
-      }
-    },
-    rotate: "0deg",
-    opacity: 1,
-    ease: "power2.inOut"
-  });
-
-  gsap.to("#allcont", {
-    scrollTrigger: {
-      trigger: "#pg3cont",
-      start: "23% center",
-      end: "28% center",
+      trigger: "#pg3_2cont",
+      start: "top 80%",
+      end: "bottom 20%",
       scrub: 1
     },
-    backgroundColor: "#48bb78",
-    ease: "power2.inOut"
+    y: 100,
+    opacity: 0,
+    stagger: 0.2,
+    ease: "power2.out"
   });
 
   gsap.to("#pg-4", {
     scrollTrigger: {
       trigger: "#pg3cont",
-      start: "70% 70%",
-      end: "70% 70%",
-      scrub: 0.2,
+      start: "bottom bottom",
+      end: "bottom center",
+      scrub: 1,
+      onEnter: () => {
+        document.querySelector("#pg-4").style.display = "block";
+      }
     },
-    display: "none",
+    visibility: "visible",
+    ease: "power2.inOut"
   });
 }
 
@@ -153,56 +86,12 @@ let q = 0
 gsap.registerPlugin(ScrollTrigger);
 
 gsap.to(".circle", {
-  rotate: "360deg",
-  scrollTrigger: {
-    trigger: "#pg2cont",
-    start: "top top",
-    end: "bottom bottom",
-    scrub: 1,
-  },
-  ease: "linear"
+  boxShadow: "0 0 30px 10px green",
+  duration: 2,
+  repeat: -1,
+  yoyo: true,
+  ease: "sine.inOut"
 });
-
-gsap.to("#innercircle", {
-  width: "100%",
-  height: "100%",
-  opacity: 1,
-  scrollTrigger: {
-    trigger: "#pg2cont",
-    start: "0% top",
-    end: "100% top",
-    scrub: 0.1,
-  },
-  ease: "linear"
-});
-
-if (screen.width > 768) {
-  gsap.to("#techss", {
-    translateY: "4vh",
-    opacity: 1,
-    scale: 1,
-    scrollTrigger: {
-      trigger: "#pg2cont",
-      start: "0% top",
-      end: "100% top",
-      scrub: 0.1,
-    },
-    stagger: 0.55
-  });
-} else {
-  gsap.to("#techss", {
-    translateY: "-45vh",
-    opacity: 1,
-    scale: 1,
-    scrollTrigger: {
-      trigger: "#pg2cont",
-      start: "0% top",
-      end: "100% top",
-      scrub: 0.1,
-    },
-    stagger: 0.55
-  });
-}
 
 const dibbas = document.querySelectorAll('.dibbas');
 
@@ -300,89 +189,106 @@ masterTl
         opacity: 1,
         duration: 0.5
     }, "-=0.5")
-
-    .to({}, {duration: 1})
-
+    .to({}, {duration: 0.5})
+    .to("#imgcont", {
+        rotate: "90deg",
+        duration: 1.5,
+        ease: "power2.inOut"
+    })
+    .to("#imgcont", {
+        scale: 100,
+        translateX: "-470%",
+        duration: 2,
+        ease: "power2.inOut"
+    })
+    .to({}, {duration: 0.5})
     .to("#card1", {
         opacity: 1,
         translateY: "0",
         rotateZ: "7deg",
-        duration: 1,
-        ease: "power2.out"
+        duration: 5,
+        ease: "power2.out",
+        onStart: () => {
+            document.querySelector("#card4").style.display = "none";
+        }
     })
     .to("#card2", {
         opacity: 1,
         translateY: "0",
         rotateZ: "-9deg",
-        duration: 1,
+        duration: 4,
         ease: "power2.out"
     }, "-=0.5")
     .to("#card3", {
         opacity: 1,
         translateY: "0",
         rotateZ: "2deg",
-        duration: 1,
+        duration: 2.5,
         ease: "power2.out"
     }, "-=0.5")
     .to("#card4", {
         opacity: 1,
         translateY: "0",
         rotateZ: "-1deg",
-        duration: 1,
-        ease: "power2.out"
+        duration: 4.5,
+        ease: "power2.out",
     }, "-=0.5");
-    gsap.to("#ExtraSpace",{
-   translateY:"-10vh",
-    scrollTrigger:{
-        trigger:"#pg1cont",
-        start:"105% top",
-        end:"125% top",
-        scrub:1,
-        }
-})
 
-function initializePage2() {
-  // Set initial styles
-  const pg2cont = document.querySelector("#pg2cont");
-  const circle = document.querySelector(".circle");
-  const pg3cont = document.querySelector("#pg3cont");
+gsap.to(["#card1", "#card2", "#card3"], {
+    x: 2000,
+    scrollTrigger: {
+        trigger: "#pg1cont",
+        start: "40% top",
+        end: "80% top",
+        scrub: 1
+    }
+});
 
-  // Set height and display properties
-  pg2cont.style.height = "300vh";
-  circle.style.display = "block";
-  pg3cont.style.display = "flex";
+gsap.to(["#card4", "#card3"], {
+    x: -2000,
+    scrollTrigger: {
+        trigger: "#pg1cont", 
+        start: "40% top",
+        end: "80% top",
+        scrub: 1
+    }
+});
 
-  // Mobile-specific animations
-  if (screen.width <= 768) {
-    gsap.to("#techss", {
-      translateY: "-45vh",
-      opacity: 1,
-      scale: 1,
-      scrollTrigger: {
-        trigger: "#pg2cont",
-        start: "0% top",
-        end: "100% top",
-        scrub: 0.1,
-      },
-      stagger: 0.55
-    });
-  } else {
-    gsap.to("#techss", {
-      translateY: "4vh",
-      opacity: 1,
-      scale: 1,
-      scrollTrigger: {
-        trigger: "#pg2cont",
-        start: "0% top",
-        end: "100% top",
-        scrub: 0.1,
-      },
-      stagger: 0.55
-    });
+gsap.to(["#card1", "#card2", "#card3", "#card4"], {
+  hidden: true,
+  duration: 1,
+  ease: "power2.out",
+  scrollTrigger: {
+    trigger: "#pg1cont",
+    start: "80% top",
+    end: "90% top",
+    scrub: 1
   }
+});
 
-  baadwaale();
-}
+gsap.to("#getstarted", {
+  opacity: 1,
+  duration: 1,
+  ease: "power2.out",
+  scrollTrigger: {
+    trigger: "#pg1cont",
+    start: "40% top",
+    end: "80% top", 
+    scrub: 1
+  }
+});
+
+
+
+gsap.to("#ExtraSpace",{
+  translateY:"-10vh",
+   scrollTrigger:{
+       trigger:"#pg1cont",
+       start:"105% top",
+       end:"125% top",
+       scrub:1,
+       }
+})
 
 ScrollTrigger.create({
   trigger: "#pg1cont",
@@ -559,14 +465,6 @@ gsap.from(".step-item", {
   opacity: 0,
   stagger: 0.2,
   ease: "power2.out"
-});
-
-gsap.to(".circle", {
-  boxShadow: "0 0 30px 10px green",
-  duration: 2,
-  repeat: -1,
-  yoyo: true,
-  ease: "sine.inOut"
 });
 
 gsap.to("#main", {
