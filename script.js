@@ -204,35 +204,35 @@ masterTl
     .to({}, {duration: 0.5})
     .to("#card1", {
         opacity: 1,
-        translateY: "0",
+        translateY: "30vh",
         rotateZ: "7deg",
         duration: 5,
         ease: "power2.out"
     })
     .to("#card2", {
         opacity: 1,
-        translateY: "0",
+        translateY: "30vh",
         rotateZ: "-9deg",
         duration: 4,
         ease: "power2.out"
     }, "-=0.5")
     .to("#card3", {
         opacity: 1,
-        translateY: "0",
+        translateY: "30vh",
         rotateZ: "2deg",
         duration: 2.5,
         ease: "power2.out"
     }, "-=0.5")
     .to("#card4", {
         opacity: 1,
-        translateY: "0",
+        translateY: "30vh",
         rotateZ: "-1deg",
         duration: 4.5,
         ease: "power2.out",
     }, "-=0.5");
 
 gsap.to(["#card1", "#card2"], {
-    x: 2000,
+    x: 1000,
     scrollTrigger: {
         trigger: "#pg1cont",
         start: "40% top",
@@ -242,7 +242,7 @@ gsap.to(["#card1", "#card2"], {
 });
 
 gsap.to(["#card4", "#card3"], {
-    x: -2000,
+    x: -1000,
     scrollTrigger: {
         trigger: "#pg1cont", 
         start: "40% top",
@@ -273,13 +273,34 @@ gsap.to("#getstarted", {
   scrollTrigger: {
     trigger: "#pg1cont",
     start: "50% top",
-    end: "90% top",
+    end: "150% top",
     scrub: 1,
     onEnter: () => {
       document.querySelector("#getstarted").style.pointerEvents = "auto";
+      gsap.to(["#strng", ".plts", "#card1", "#card2", "#card3", "#card4", ".circle", "#pg3cont", "#ExtraSpace"], {
+        opacity: 0,
+        duration: 0.5,
+        display: "none"
+      });
     },
     onLeave: () => {
       document.querySelector("#getstarted").style.pointerEvents = "none";
+    },
+    onEnterBack: () => {
+      document.querySelector("#getstarted").style.pointerEvents = "auto";
+      gsap.to(["#strng", ".plts", "#card1", "#card2", "#card3", "#card4", ".circle", "#pg3cont", "#ExtraSpace"], {
+        opacity: 0,
+        duration: 0.5,
+        display: "none"
+      });
+    },
+    onLeaveBack: () => {
+      document.querySelector("#getstarted").style.pointerEvents = "none";
+      gsap.to(["#strng", ".plts", "#card1", "#card2", "#card3", "#card4", ".circle", "#pg3cont", "#ExtraSpace"], {
+        opacity: 1,
+        duration: 0.5,
+        display: "block"
+      });
     }
   },
   scale: 2.7,
@@ -289,48 +310,145 @@ gsap.to("#getstarted", {
   ease: "power2.inOut"
 });
 
-gsap.to(".step-item:not(:first-child)", {
+
+gsap.set([".step-item"], { 
+  opacity: 0, 
+  y: 100,
+  scale: 0.8
+});
+
+
+const stepsTimeline = gsap.timeline({
   scrollTrigger: {
     trigger: "#pg1cont",
     start: "85% top",
-    end: "95% top",
-    scrub: 1,
-    onLeave: () => {
-      gsap.to(".subpoints-section", {
-        display: "block",
-        opacity: 1,
-        y: -270,
-        scale: 0.8,
+    end: "400% top",
+    scrub: 2,
+    pin: true,
+    pinSpacing: true,
+    anticipatePin: 1,
+    onEnter: () => {
+      gsap.to(["#strng", ".plts", "#card1", "#card2", "#card3", "#card4", ".circle", "#pg3cont", "#ExtraSpace"], {
+        opacity: 0,
         duration: 0.5,
-        delay: 0.3,
-        ease: "power2.out"
+        display: "none"
       });
     },
-    onEnterBack: () => {
-      gsap.to(".subpoints-section", {
-        opacity: 0,
-        duration: 0.3,
-        onComplete: () => {
-          gsap.set(".subpoints-section", { display: "none" });
-        }
+    onLeaveBack: () => {
+      gsap.to(["#strng", ".plts", "#card1", "#card2", "#card3", "#card4", ".circle", "#pg3cont", "#ExtraSpace"], {
+        opacity: 1,
+        duration: 0.5,
+        display: "block"
       });
     }
-  },
-  opacity: 0,
-  y: 0,
-  stagger: 0.1,
-  ease: "power2.inOut"
+  }
 });
 
-gsap.to("#ExtraSpace",{
-  translateY:"-10vh",
-   scrollTrigger:{
-       trigger:"#pg1cont",
-       start:"105% top",
-       end:"125% top",
-       scrub:1,
-       }
-})
+stepsTimeline
+  .to(".step-item", {
+    opacity: 1,
+    y: 0,
+    scale: 0.8,
+    stagger: 0.2,
+    duration: 2,
+    ease: "power2.out"
+  })
+  
+  .to(".step-item:not(:nth-child(1))", {
+    opacity: 0.2,
+    scale: 0.6,
+    filter: "blur(2px)",
+    duration: 1
+  })
+  .to(".step-1-content", {
+    scale: 1,
+    y: -20,
+    duration: 1
+  }, "<")
+  
+  .to(".step-item:nth-child(1)", {
+    y: -150,
+    opacity: 0.2,
+    scale: 0.6,
+    filter: "blur(2px)",
+    duration: 0.8
+  })
+  .to(".step-item:nth-child(2)", {
+    y: -20,
+    opacity: 1,
+    scale: 0.8,
+    filter: "blur(0px)",
+    duration: 0.8
+  }, "<")
+  .to(".step-2-content", {
+    scale: 1,
+    y: -20,
+    opacity: 1,
+    duration: 0.5
+  })
+  
+  .to(".step-item:nth-child(2)", {
+    y: -150,
+    opacity: 0.2,
+    scale: 0.6,
+    filter: "blur(2px)",
+    duration: 0.8
+  })
+  .to(".step-item:nth-child(3)", {
+    y: -20,
+    opacity: 1,
+    scale: 0.8,
+    filter: "blur(0px)",
+    duration: 0.8
+  }, "<")
+  .to(".step-3-content", {
+    scale: 1,
+    y: -20,
+    duration: 0.8
+  }, "<")
+  
+  .to(".step-item:nth-child(3)", {
+    y: -150,
+    opacity: 0.2,
+    scale: 0.6,
+    filter: "blur(2px)",
+    duration: 0.8
+  })
+  .to(".step-item:nth-child(4)", {
+    y: -20,
+    opacity: 1,
+    scale: 0.8,
+    filter: "blur(0px)",
+    duration: 0.8
+  }, "<")
+  .to(".step-4-content", {
+    scale: 1,
+    y: -20,
+    duration: 0.8
+  }, "<")
+  
+  .to(".step-item:nth-child(4)", {
+    y: -150,
+    opacity: 0,
+    duration: 0.8
+  })
+  
+  .to(["#pg3cont", "#ExtraSpace"], {
+    opacity: 1,
+    duration: 0.5,
+    display: "block"
+  });
+
+
+gsap.to("#ExtraSpace", {
+  translateY: "-10vh",
+  scrollTrigger: {
+    trigger: "#pg3cont",  
+    start: "top center",
+    end: "bottom center",
+    scrub: 1
+  }
+});
 
 ScrollTrigger.create({
   trigger: "#pg1cont",
@@ -566,4 +684,13 @@ gsap.set(".subpoints-section", {
   opacity: 0,
   y: 20,
   display: "none"
+});
+
+
+gsap.to("#getstarted h2", {
+    scale: 15,
+    duration: 1,
+    yoyo: true,
+    repeat: -1,
+    ease: "power1.inOut"
 });
