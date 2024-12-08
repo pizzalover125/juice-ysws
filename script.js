@@ -207,10 +207,7 @@ masterTl
         translateY: "0",
         rotateZ: "7deg",
         duration: 5,
-        ease: "power2.out",
-        onStart: () => {
-            document.querySelector("#card4").style.display = "none";
-        }
+        ease: "power2.out"
     })
     .to("#card2", {
         opacity: 1,
@@ -234,7 +231,7 @@ masterTl
         ease: "power2.out",
     }, "-=0.5");
 
-gsap.to(["#card1", "#card2", "#card3"], {
+gsap.to(["#card1", "#card2"], {
     x: 2000,
     scrollTrigger: {
         trigger: "#pg1cont",
@@ -266,19 +263,64 @@ gsap.to(["#card1", "#card2", "#card3", "#card4"], {
   }
 });
 
-gsap.to("#getstarted", {
-  opacity: 1,
-  duration: 1,
-  ease: "power2.out",
-  scrollTrigger: {
-    trigger: "#pg1cont",
-    start: "40% top",
-    end: "80% top", 
-    scrub: 1
-  }
+gsap.set("#getstarted", {
+  opacity: 0,
+  scale: 0.8,
+  pointerEvents: "none"
 });
 
+gsap.to("#getstarted", {
+  scrollTrigger: {
+    trigger: "#pg1cont",
+    start: "50% top",
+    end: "90% top",
+    scrub: 1,
+    onEnter: () => {
+      document.querySelector("#getstarted").style.pointerEvents = "auto";
+    },
+    onLeave: () => {
+      document.querySelector("#getstarted").style.pointerEvents = "none";
+    }
+  },
+  scale: 2.7,
+  translateY: "30vh",
+  opacity: 1,
+  duration: 1,
+  ease: "power2.inOut"
+});
 
+gsap.to(".step-item:not(:first-child)", {
+  scrollTrigger: {
+    trigger: "#pg1cont",
+    start: "85% top",
+    end: "95% top",
+    scrub: 1,
+    onLeave: () => {
+      gsap.to(".subpoints-section", {
+        display: "block",
+        opacity: 1,
+        y: -270,
+        scale: 0.8,
+        duration: 0.5,
+        delay: 0.3,
+        ease: "power2.out"
+      });
+    },
+    onEnterBack: () => {
+      gsap.to(".subpoints-section", {
+        opacity: 0,
+        duration: 0.3,
+        onComplete: () => {
+          gsap.set(".subpoints-section", { display: "none" });
+        }
+      });
+    }
+  },
+  opacity: 0,
+  y: 0,
+  stagger: 0.1,
+  ease: "power2.inOut"
+});
 
 gsap.to("#ExtraSpace",{
   translateY:"-10vh",
@@ -300,7 +342,6 @@ ScrollTrigger.create({
 let lastRealIndex = 0;
 
 function showTextForImage(imageNumber) {
-  // Hide all text elements first
   document.querySelectorAll('.element').forEach(el => {
     el.style.opacity = '0';
     el.style.transition = 'opacity 0.3s ease-in-out';
@@ -519,4 +560,10 @@ window.addEventListener('load', () => {
   
   document.querySelector('.circle').style.display = 'block';
   document.querySelector('.circle').style.visibility = 'visible';
+});
+
+gsap.set(".subpoints-section", {
+  opacity: 0,
+  y: 20,
+  display: "none"
 });
