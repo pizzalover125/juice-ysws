@@ -4,293 +4,238 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dessert</title>
-    <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.14/dist/lenis.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        body {
-            overflow-x: hidden;
+        :root {
+            --primary-color: #4CAF50;
+            --secondary-color: #2E7D32;
+            --background-color: #F0F4F0;
+            --text-color: #333;
         }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-wrap: pretty;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+        }
+        .hero-content {
+            max-width: 800px;
+            padding: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 900;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        .cta-button {
+            display: inline-block;
+            background-color: white;
+            color: var(--primary-color);
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+        }
+        .key-points {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 60px 20px;
+            background: white;
+        }
+        .point {
+            text-align: center;
+            max-width: 250px;
+            padding: 20px;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+        .point:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .point-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        .section {
+            padding: 60px 20px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .section h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+            font-size: 2.5rem;
+        }
+        .requirements, .faq {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .requirements-list {
+            list-style-type: none;
+            display: inline-block; 
+            text-align: left;
+            max-width: 300px; 
+            margin: 0 auto;
+            text-wrap: pretty;
+        }
+        .requirements-list li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 15px;
+            text-wrap: pretty;
+        }
+        .requirements-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        .faq-item {
+            text-align: left;
+            border-bottom: 1px solid #eee;
+            padding: 15px 0;
+        }
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        .faq-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        .footer {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .footer-content {
+            margin: 0 auto;
+        }
+        .footer h3 {
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        .footer a {
+            color: white;
+            text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+        .footer a:hover {
+            color: #e0e0e0;
+        }
+        @media (max-width: 768px) {
+            .key-points {
+                flex-direction: column;
+                align-items: center;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        
     </style>
 </head>
-
 <body>
-    <div id="main" class="max-w-[100vw] bg-[#020202] w-screen">
-        <div id="scrollCont" class="w-screen h-[200vh] bg-[#020202] relative">
-            <div id="pg1cont" class="h-[100vh] sticky top-0 flex flex-col bg-[#020202] justify-center items-center">
-                <div class="text-container relative">
-                    <div id="heading" class="fonnt text-white text-center relative text-6xl">
-                        <span class="text-[#89CFF0]">Not</span> Just <span class="text-[#48bb78]">Another</span> <span class="text-[#712525]">Cider</span>
-                    </div>
-                    <div id="heading" class="fonnt text-white text-center relative text-6xl opacity-30 translate-y-[10px] blur-[2px]">
-                        <span class="text-[#89CFF0]">Not</span> Just <span class="text-[#48bb78]">Another</span> <span class="text-[#712525]">Cider</span>
-                    </div>
-                    
-                    <div class="text-swipe-item text-[#48bb78] orbitron text-6xl text-center absolute top-0 left-0 w-full">
-                        <span class="opacity-0 intros">I</span>
-                        <span class="opacity-0 intros">N</span>
-                        <span class="opacity-0 intros">T</span>
-                        <span class="opacity-0 intros">R</span>
-                        <span class="opacity-0 intros">O</span>
-                        <span class="opacity-0 intros">D</span>
-                        <span class="opacity-0 intros">U</span>
-                        <span class="opacity-0 intros">C</span>
-                        <span class="opacity-0 intros">I</span>
-                        <span class="opacity-0 intros">N</span>
-                        <span class="opacity-0 intros">G</span>
-                    </div>
-                </div>
-                
-                <div style="box-shadow: 0px 0px 30px 2px #48bb78;" id="imgcont" class="translate-x-[-50px] translate-y-[5px] z-[3] absolute bg-[#020202] overflow-hidden rounded-3xl border-[12px] border-black w-[10%] flex justify-center items-center h-[0%]">
-                    <div class="absolute top-0 left-0 w-full h-[25px] bg-black flex justify-between items-center px-4 z-20">
-                        <div class="flex items-center gap-2">
-                            <span class="text-white text-xs">12:00</span>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <span class="text-white text-xs">📶 🔋</span>
-                        </div>
-                    </div>
-                    
-                    <div class="absolute inset-0 mt-[25px] flex flex-col items-center justify-start bg-[#020202] overflow-y-auto">
-                        <div class="w-full bg-[#48bb78] py-4 px-2 flex items-center justify-between">
-                            <h2 class="text-black text-2xl font-bold orbitron">Dessert</h2>
-                            <div class="flex gap-2">
-                                <span class="text-black">⋮</span>
-                            </div>
-                        </div>
 
-                        <div class="w-full p-4 flex flex-col gap-4">
-                            <div class="w-20 h-20 mx-auto mb-2 rounded-2xl overflow-hidden border-2 border-[#48bb78]">
-                                <img src="images/mainpg.png" alt="Dessert Icon" class="w-full h-full object-cover">
-                            </div>
+    	
+<a href="https://hackclub.com/"><img style="position: absolute; top: 0; border: 0; width: 256px; z-index: 999;" src="https://assets.hackclub.com/flag-orpheus-left.svg" alt="Hack Club"/></a>
 
-                            <div class="bg-black/30 rounded-xl p-4 border border-[#48bb78]/30">
-                                <p class="text-white text-sm leading-relaxed text-center">
-                                    Creating an Android app is like dessert—sweet satisfaction that lasts, unlike cider, and with $25 for your developer license, you get to savor the success by sharing it with the world!
-                                </p>
-                            </div>
-
-                            <div class="flex gap-2 justify-center mt-2">
-                                <button class="bg-[#48bb78] text-black px-4 py-2 rounded-full text-sm font-medium">
-                                    Install
-                                </button>
-                                <button class="border border-[#48bb78] text-[#48bb78] px-4 py-2 rounded-full text-sm font-medium">
-                                    Share
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="absolute bottom-0 left-0 w-full h-[48px] bg-black flex justify-center items-center gap-8 z-20">
-                        <button onclick="navigateToCard(1)" class="android-nav-btn w-[20px] h-[20px] border-2 border-[#48bb78] rounded-full cursor-pointer"></button>
-                        <button onclick="navigateToCard(2)" class="android-nav-btn w-[20px] h-[2px] bg-[#48bb78] rounded-full cursor-pointer"></button>
-                        <button onclick="navigateToCard(3)" class="android-nav-btn w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-b-[15px] border-b-[#48bb78] transform rotate-180 cursor-pointer"></button>
-                    </div>
-                </div>
-                <div class="text-swipe-container absolute text-6xl" style="top: 50%; left: 50%; transform: translate(-50%, -50%);">
-
-                </div>
-                <div id="card1" style="box-shadow: 0px 0px 10px yellow;" class="carad absolute translate-y-[180vh] border-2 border-[yellow]  overflow-hidden z-10 rounded-xl w-[780px] h-[680px]">
-                    <div id="card1cont" class="w-full h-full flex flex-col bg-[#020202]  items-center">
-                        <div id="cardheaddabba" class="w-full bg-[yellow] flex justify-center items-center"><div id="carhead" class="text-[yellow] bg-black orbitron text-center text-4xl border-2 w-fit  border-[yellow] px-5 py-2 rounded-xl">Dessert</div></div>
-                        <div id="img1" class="left-0 border-2 border-[yellow] absolute rounded-xl  translate-y-[40%] ml-[5%] flex items-center justify-center translate-x-[-6%] "><img class="rounded-xl" src="https://cdn.freebiesupply.com/logos/large/2x/google-play-store-logo-png-transparent.png"  alt="" height="100%" width="40%"></div>
-                        <div  class="translate-y-[0%] border-2 border-[yellow] rounded-xl overflow-hidden text-[40px] text-[black] bg-[yellow] absolute top-[20%] orbitron max-w-[30%] mr-[5%] px-4 font-bold py-2 right-0"> What is it?!</div>
-                        <div  class="translate-y-[0%] border-2 border-[yellow] rounded-xl overflow-hidden text-[15px] text-[yellow] bg-[#020202] absolute bottom-[10%] orbitron max-w-[30%] mr-[5%] px-4 py-2 right-0"> In Short, when you ship an <span class="text-[#A4C639]">Android</span> App to the play store, you get $25 to go buy a Developer Account, so you can post your amazing creation on the Google Play Store!</div>
-                    </div>
-                </div>
-                <div id="card2" style="box-shadow: 0px 0px 10px turquoise;" class="carad absolute translate-y-[180vh] border-2 border-[turquoise]  overflow-hidden z-10 rounded-xl w-[780px] h-[680px]">
-                    <div id="card1cont" class="w-full h-full flex flex-col bg-[#020202]  items-center">
-                        <div id="cardheaddabba" class="w-full bg-[turquoise] flex justify-center items-center"><div id="carhead" class="text-[turquoise] bg-black orbitron text-center text-4xl border-2 w-fit  border-[turquoise] px-5 py-2 rounded-xl">Dessert</div></div>
-                        <div id="img2" class="left-0 border-2 border-[turquoise] absolute rounded-xl  max-w-[55%] translate-y-[100%] ml-[5%] flex items-center justify-center translate-x-[0%] "><img class="rounded-xl" src="image"  alt=""></div>
-                        <div  class="translate-y-[0%] border-2 border-[turquoise] rounded-xl overflow-hidden text-[40px] text-[black] bg-[turquoise] absolute top-[20%] orbitron max-w-[30%] mr-[5%] px-4 font-bold py-2 right-0">When is it?!</div>
-                        <div  class="translate-y-[0%] border-2 border-[turquoise] rounded-xl overflow-hidden text-[15px] text-[turquoise] bg-[#020202] absolute bottom-[10%] orbitron max-w-[30%] mr-[5%] px-4 py-2 right-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</div>
-                    </div>
-                </div>
-                <div id="card3" style="box-shadow: 0px 0px 10px lightpink;" class="carad absolute translate-y-[180vh] border-2 border-[lightpink]  overflow-hidden z-10 rounded-xl w-[780px] h-[680px]">
-                    <div id="card1cont" class="w-full h-full flex flex-col bg-[#020202]  items-center">
-                        <div id="cardheaddabba" class="w-full bg-[lightpink] flex justify-center items-center"><div id="carhead" class="text-[lightpink] bg-black orbitron text-center text-4xl border-2 w-fit  border-[lightpink] px-5 py-2 rounded-xl">Dessert</div></div>
-                        <div id="img3" class="left-0 border-2 border-[lightpink] absolute rounded-xl max-h-[50%]   translate-y-[50%] ml-[5%] flex items-center justify-center translate-x-[15%] "><span class="w-[80%]  flex items-center overflow-hidden justify-center"><img class="rounded-xl" src="images/"  alt=""></span></div>
-                        <div  class="translate-y-[0%] border-2 border-[lightpink] rounded-xl overflow-hidden text-[40px] text-[black] bg-[lightpink] absolute top-[20%] orbitron max-w-[30%] mr-[5%] px-4 font-bold py-2 right-0">Lorem ipsum dolor sit amet.</div>
-                        <div  class="translate-y-[0%] border-2 border-[lightpink] rounded-xl overflow-hidden text-[15px] text-[lightpink] bg-[#020202] absolute bottom-[10%] orbitron max-w-[30%] mr-[5%] px-4 py-2 right-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</div>
-                    </div>
-                </div>
-            <div id="card4" style="box-shadow: 0px 0px 10px #48bb78;" class="carad absolute translate-y-[180vh] border-2  border-[#48bb78]  overflow-hidden z-10 rounded-xl w-[780px] h-[680px]">
-                <div id="card1cont" class="w-full h-full flex flex-col bg-[#020202]  items-center">
-                    <div id="cardheaddabba" class="w-full bg-[#48bb78] flex justify-center items-center"><div id="carhead" class="text-[#48bb78] bg-black orbitron text-center text-4xl border-2 w-fit  border-[#48bb78] px-5 py-2 rounded-xl">Dessert</div></div>
-                    <div id="img4" class="left-0 border-2 border-[#48bb78] absolute rounded-xl   translate-y-[40%] ml-[5%] flex items-center justify-center translate-x-[20%] "><img  class="max-h-[400px] rounded-xl" src="images/"  alt=""></div>
-                    <div  class="translate-y-[0%] border-2 border-[#48bb78] rounded-xl overflow-hidden text-[40px] text-[black] bg-[#48bb78] absolute top-[20%] orbitron max-w-[30%] mr-[5%] px-4 font-bold py-2 right-0">Lorem ipsum dolor sit amet.</div>
-                    <div  class="translate-y-[0%] border-2 border-[#48bb78] rounded-xl overflow-hidden text-[15px] text-[#48bb78] bg-[#020202] absolute bottom-[10%] orbitron max-w-[30%] mr-[5%] px-4 py-2 right-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</div>
-                </div>
-            </div>
-        </div>  
-    </div>
-    
-    <div style="width: 100vw; overflow-x: hidden;">
-        <div id="ExtraSpace" style="box-shadow: 0px 0px 50px 3px #48bb78;" class="h-[10vh] my-[25vh] items-center justify-center skew-x-[20deg] w-[110vw] translate-x-[-5vw] translate-y-[50vh] rotate-[3deg] flex bgp">
-            <div class="explore w-screen absolute flex font-[Kanit] font-bold items-center justify-center h-[10vh]">
-                <div class="w-full animcover overflow-hidden text-[#48bb78] relative h-[100%] text-[25px] flex">
-                    <div class="items anims relative z-[100] flex w-full items-center h-[100%] justify-around">
-                        <!-- <div class="item flex items-center justify-center flex-col">
-                            <span style="border: 2px solid #48bb78; border-radius: 5px;" class="px-2 py-1">Free </span>
-                        </div> -->
-                        <div class="item flex items-center justify-center flex-col">
-                            <span style="border: 2px solid #48bb78; border-radius: 5px;" class="px-2 py-1">Getting a free dev license? 🤔</span>
-                        </div>
-                        <div class="item flex items-center justify-center flex-col">
-                            <span style="border: 2px solid #48bb78; border-radius: 5px;" class="px-2 py-1"  >Coding android apps?</span>
-                        </div>
-                        <div class="item flex items-center justify-center flex-col">
-                            <span style="border: 2px solid #48bb78; border-radius: 5px;" class="px-2 py-1">Free Stickers?!</span>
-                        </div>
-                        <div class="item flex items-center justify-center flex-col">
-                            <span style="border: 2px solid #48bb78; border-radius: 5px;" class="px-2 py-1">Hack it up! 💻</span>
-                        </div>
-                        <div class="item flex items-center justify-center flex-col">
-                            <span style="border: 2px solid #48bb78; border-radius: 5px;" class="px-2 py-1">Be future-ready! 🚀</span>
-                        </div>
-                    </div>
-                    <div class="items anims2 z-[100] left-[100%] absolute flex w-full items-center h-full justify-around">
-                    </div>
-                </div>
-            </div>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Dessert</h1>
+            <p>Develop an Android app, get it published on the Play Store.</p>
+            <a href="https://forms.hackclub.com/t/4xsx4MYmgXus" class="cta-button" target="_blank">Submit</a>
         </div>
-    </div>
+    </section>
 
-<div id="pg2cont" class="h-[100vh]    w-screen  relative " >
-    <div class="flex w-screen h-[100vh]  overflow-hidden p-[30px] items-center justify-center sticky top-0">
-        <div id="techss" class="opacity-0 flex translate-y-[100vh]  bg-black w-[400px] h-[500px] translate-x-[25%] rounded-xl self-end absolute z-[101]  rotate-[25deg] p-[30px] items-center justify-center "><img id="techsimg" src="step1.png"></div>
-        <div id="techss" class="opacity-0 flex translate-y-[100vh]  bg-black w-[400px] h-[500px] translate-x-[20%] rounded-xl self-end absolute z-[101]  rotate-[20deg] p-[30px] items-center justify-center "><img id="techsimg" src="step2.png"></div>
-        <div id="techss" class="opacity-0 flex translate-y-[100vh]  bg-black w-[400px] h-[500px] translate-x-[15%] rounded-xl self-end absolute z-[101]  rotate-[15deg] p-[30px] items-center justify-center "><img id="techsimg" src="step3.png"></div>
-        <div id="techss" class="opacity-0 flex translate-y-[100vh]  bg-black w-[400px] h-[500px] translate-x-[10%] rounded-xl self-end absolute z-[101]  rotate-[10deg] p-[30px] items-center justify-center "><img id="techsimg" src="step4.png"></div>
-            <div class="circle  w-[75vw]  max-[540px]:w-[150vw] flex-grow-0 flex-shrink-0 translate-y-[100%] rounded-full text-[15px]  relative  bg-[black] border-2 border-[green] top-[50%] font-extrabold  h-[75vw] max-[540px]:h-[150vw] orbitron rotate-[0deg] bottom-[0%]  ">
-                <div id="innercircle" class="w-[0%] h-[0%] rounded-full absolute opacity-0 top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] bg-[#48bb78]"></div>
-                <div class="element" id="el1"><span style="color: green;">Create</span></div>
-                <div class="element" id="el2"><span style="color: green;">Your</span></div>
-                <div class="element" id="el3"><span style="color: green;">App</span></div>
-                <div class="element" id="el4"><span style="color: green;">Submit</span></div>
-                <div class="element" id="el5"><span style="color: green;">Your</span></div>
-                <div class="element" id="el6"><span style="color: green;">App to a appstore</span></div>
-                <div class="element" id="el7"><span style="color: green;">Get</span></div>
-                <div class="element" id="el8"><span style="color: green;">Feedback</span></div>
-                <div class="element" id="el9"><span style="color: green;">Receive</span></div>
-                <div class="element" id="el10"><span style="color: green;">Your License</span></div>
-              </div>
-        
-        <svg  id="strng" height="80px"  class="w-[50%] max-[540px]:w-[80%] absolute z-[1000] top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] flex items-center overflow-visible justify-center">
-            <path d="M 100 40 Q 500 40 900 40" stroke="#48bb78" fill="transparent"/>
-        </svg>
-    <h1 class="text-white opacity-30 plts orbitron top-[10%] left-[50%] translate-x-[-50%] translate-y-[-50%] absolute text-center text-6xl"></h1>
-    
-    </div>
-</div>
-
-<div id="pg3cont" class="h-[300vh]  w-screen   relative">
-    <div id="allcont" class="flex h-screen sticky top-[0%] w-fit  "> 
-        <img id="mansvg" hidden class="absolute left-[150px] top-[150px] z-[100]" src="./images/svg.svg" width="120px" alt="">
-        <div id="pg3_2" class="w-screen flex-grow-0 flex items-center justify-center flex-shrink-0 h-[100vh]">
-            <div id="pg3_2cont" class="w-[80%] text-white border-2 border-[black] h-[80%] p-[30px] rounded-xl relative">
-                <h2 id="pp" class="relative text-5xl font-[Orbitron] text-white font-bold w-full text-center p-1 mb-8">
-                    Steps To Get Started
-                </h2>
-                <div class="flex flex-col gap-6">
-                    <div class="step-item flex items-center gap-4">
-                        <div class="step-number bg-[#48bb78] text-white rounded-full w-10 h-10 flex items-center justify-center font-bold">1</div>
-                        <div class="step-content bg-white text-black p-4 rounded-xl flex-1">
-                            Create your Android app using your preferred development tools
-                        </div>
-                    </div>
-                    
-                    <div class="step-item flex items-center gap-4 justify-end">
-                        <div class="step-content bg-white text-black p-4 rounded-xl flex-1">
-                            Submit your app to the Amazon App Store
-                        </div>
-                        <div class="step-number bg-[#48bb78] text-white rounded-full w-10 h-10 flex items-center justify-center font-bold">2</div>
-                    </div>
-                    
-                    <div class="step-item flex items-center gap-4">
-                        <div class="step-number bg-[#48bb78] text-white rounded-full w-10 h-10 flex items-center justify-center font-bold">3</div>
-                        <div class="step-content bg-white text-black p-4 rounded-xl flex-1">
-                            Share your app link with us for review and feedback
-                        </div>
-                    </div>
-                    
-                    <div class="step-item flex items-center gap-4 justify-end">
-                        <div class="step-content bg-white text-black p-4 rounded-xl flex-1">
-                            Receive your Google Play Developer License
-                        </div>
-                        <div class="step-number bg-[#48bb78] text-white rounded-full w-10 h-10 flex items-center justify-center font-bold">4</div>
-                    </div>
-                </div>
-            </div>
+    <section class="key-points">
+        <div class="point">
+            <div class="point-icon">🚀</div>
+            <h3>Build Real Apps</h3>
+            <p>Create a functional Android app from scratch</p>
         </div>
-        <div id="pg3_3" class="w-screen flex-grow-0 flex-shrink-0 h-[100vh] overflow-hidden flex items-center justify-center flex-col">
-            <div id="pg3_3cont" class="w-full h-full gap-2 p-2 relative">
-                <div id="headpg3" class="w-full h-[5vh] flex items-center justify-around">
-                    <div id="hd1" class="hds w-[100%]  text-4xl max-[540px]:text-2xl text-[#48bb78] kanit h-full bg-black rounded-xl text-center flex items-center justify-center"><a href="https://github.com/pizzalover125/juice-ysws" target="_blank">GitHub</a></div>
-                </div>
-                <div id="pg3_3contin" class="w-full mt-[1vh] flex items-center justify-around h-[93vh] relative">
-                    <div id="contin_1" class="w-[59.5%] h-full bg-black rounded-xl">
-                        <div id="namezz" class="text-[#48bb78] h-[30%] m-[3%] max-[540px]:m-[1%] font-bold  flex items-center justify-center text-9xl orbitron">
-                            Dessert
-                        </div>
-                        <div id="rowdate" class="w-full h-[5%] flex items-center kanit justify-around text-[#48bb78]">
-                            <span class=" text-center w-[10%]">12/10/2024</span>
-                            <span class="lineee h-[10px] rounded-full w-[70%] bg-[#48bb78]"></span>
-                            <span class=" text-center w-[10%]">1/10/2025</span>
-                        </div>
-                        <div id="slider" class="w-full h-[55%] bg-black p-[30px] max-[540px]:p-[10px] text-white rounded-xl">
-                            <div class="swiper mySwiper w-full h-[90%] min-h-[100px]  relative bg-black rounded-xl">
-                                <div class="swiper-wrapper min-h-fit  w-full h-full">
-                                    <div class="swiper-slide min-h-[100px] bg-[#48bb78] h-full flex items-center text-2xl max-[540px]:text-[11px] text-white justify-center font-[kanit] flex-grow-0  flex-shrink-0 w-full"><span class="mx-3 text-4xl max-[540px]:text-[15px] bg-white text-[#48bb78]  rounded-xl px-2 max-[540px]:px-1 py-1 max-[540px]:py-[1px] font-bold">Develop</span> Your App</div>
-                                    <div class="swiper-slide min-h-[100px] bg-[#48bb78] h-full flex items-center text-2xl max-[540px]:text-[11px] text-white justify-center font-[kanit] flex-grow-0  flex-shrink-0 w-full"><span class="mx-3 text-4xl max-[540px]:text-[15px] bg-white text-[#48bb78]  rounded-xl px-2 max-[540px]:px-1 py-1 max-[540px]:py-[1px] font-bold">Apply</span> For your app to be on an appstore</div>
-                                    <div class="swiper-slide min-h-[100px] bg-[#48bb78] h-full flex items-center text-2xl max-[540px]:text-[11px] text-white justify-center font-[kanit] flex-grow-0  flex-shrink-0 w-full"><span class="mx-3 text-4xl max-[540px]:text-[15px] bg-white text-[#48bb78]  rounded-xl px-2 max-[540px]:px-1 py-1 max-[540px]:py-[1px] font-bold">Reflect</span> With other Hack Clubbers on your app</div>
-                                    <div class="swiper-slide min-h-[100px] bg-[#48bb78] h-full flex items-center text-2xl max-[540px]:text-[11px] text-white justify-center font-[kanit] flex-grow-0  flex-shrink-0 w-full"><span class="mx-3 text-4xl max-[540px]:text-[15px] bg-white text-[#48bb78]  rounded-xl px-2 max-[540px]:px-1 py-1 max-[540px]:py-[1px] font-bold">Earn</span> Your Developer License</div>
-                                </div>
-                                <div class="swiper-button-next absolute top-[50%] max-[540px]:top-[70%] right-[5%] max-[540px]:right-[10%] max-[540px]:h-[20px] translate-x-[50%] translate-y-[-50%] text-[white]"></div>
-                                <div class="swiper-button-prev absolute top-[50%] max-[540px]:top-[70%] left-[5%] max-[540px]:left-[10%]   max-[540px]:h-[20px] translate-x-[-50%] translate-y-[-50%] text-[white]"></div>
-                            </div>
-                            <div id="slider-in-2" class="w-full mt-[20px] orbitron h-[10%] flex items-center justify-center rounded-xl bg-[#48bb78] text-white">Get Started In 4 Easy Steps</div>
-                        </div>
-
-                    </div>
-                    <div id="contin_2" class="w-[39.5%] relative text-3xl  p-[30px] max-[540px]:min-h-[60vh] max-[540px]:p-[20px] text-white h-full bg-black rounded-xl">
-                        <div id="noteHead" class="text-6xl text-center p-[20px] max-[540px]:p-[10px] bg-[#48bb78] rounded-xl text-white">Rules/Guidelines</div>
-                        <p class="text-white bg-[#48bb78] rounded-xl p-[20px] max-[540px]:leading-none max-[540px]:text-[15px] max-[540px]:p-[8px]">Lorem ipsum</p>
-                        <div id="credits" class="bottom-[4%] absolute">
-                        <div id="friend" class="text-white text-xs mt-4">
-                            Thank you to everyone who helped out, and @Dikshit Jain for making the original concept.
-                        </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="point">
+            <div class="point-icon">📦</div>
+            <h3>Publish & Earn</h3>
+            <p>Publish on Amazon App Store and receive a Google Developer License</p>
         </div>
-    </div>
-</div>
-<div id="pg-4" hidden class="h-[100vh] w-screen bg-green-500"></div>
-</div>
+        <div class="point">
+            <div class="point-icon">⏱️</div>
+            <h3>Tracked Development</h3>
+            <p>Minimum 8 hours of development tracked via Hackatime</p>
+        </div>
+    </section>
 
+    <section class="section requirements">
+        <h2>Program Requirements</h2>
+        <ul class="requirements-list">
+            <li>Minimum 8 hours of development</li>
+            <li>Submit app to Amazon App Store</li>
+            <li>Solve a problem</li>
+        </ul>
+    </section>
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script>
-    var swiper = new Swiper(".mySwiper", {
-        slidesPerView: 1,
-        spaceBetween: 30,
-        loop: true,
-        navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-        },
-        autoplay: {
-            delay: 3000,
-            disableOnInteraction: false,
-        },
-    });
-</script>
-<script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script> 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="script.js"></script>
+    <section class="section faq">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-item">
+            <h3>Who can participate?</h3>
+            <p>Anyone under the age of 18 is welcome to join the program!</p>
+        </div>
+        <div class="faq-item">
+            <h3>What is the Google Developer License?</h3>
+            <p>The Google Developer License allows for one to upload their Android apps to the app store. Traditionally, it costs $25, but with this grant, one is eligible to get it for free.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Is there a cost to participate?</h3>
+            <p>The program is free for students. All you need is motivation and a desire to learn!</p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <h3>A Project by Hack Club</h3>
+            <p>Hack Club is a registered 501(c)3 nonprofit organization that supports a network of 20k+ technical high schoolers. We believe you learn best by building when you're learning and shipping technical projects with your friends, so we've started You Ship, We Ship, a program where you ship a technical project and we ship you something in exchange.</p>
+            <p>In the past few years, we fabricated custom PCBs designed by 265 teenagers, hosted the world's longest hackathon on land, and gave away $75k of hardware.</p>
+            <p><a href="https://hackclub.com" target="_blank">Learn more about Hack Club</a></p>
+        </div>
+    </footer>
 </body>
 </html>
