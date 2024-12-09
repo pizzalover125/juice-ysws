@@ -30,98 +30,31 @@ window.addEventListener('load', () => {
 var tl = gsap.timeline();
 
 function baadwaale() {
-  document.querySelector("#pg-4").hidden = false;
-
-  // Check if elements exist before creating animations
-  const texxtsElements = document.querySelectorAll('.texxts');
-  const dibbasElements = document.querySelectorAll('.dibbas');
-
-  gsap.to("#allcont", {
-    translateX: "-200vw",
+  gsap.from(".step-item", {
     scrollTrigger: {
-      trigger: "#pg3cont",
-      start: "33.33% bottom",
-      end: "50% bottom",
-      scrub: 0.1,
-    },
-  });
-
-  gsap.to(".circle", {
-    translateY: "0%",
-    duration: 0.7,
-    ease: "power3.out",
-  });
-
-  // Only create animation if elements exist
-  if (texxtsElements.length > 0) {
-    gsap.to(".texxts", {
-      scrollTrigger: {
-        trigger: "#pg3cont",
-        start: "top 70%",
-        end: "bottom 20%",
-      },
-      stagger: 0.1,
-      opacity: 1,
-      y: 0 + "px",
-    });
-  }
-
-  gsap.to("#allcont", {
-    scrollTrigger: {
-      trigger: "#pg3cont",
-      start: "25% 70%",
-      end: "27% 70%",
-      scrub: 0.2,
-    },
-    backgroundColor: "#48bb78",
-  });
-
-  if (dibbasElements.length > 0) {
-    gsap.to(".dibbas", {
-      scrollTrigger: {
-        trigger: "#pg3cont",
-        start: "25% 70%",
-        end: "27% 70%",
-        scrub: 0.2,
-      },
-      backgroundColor: "#48bb78",
-    });
-  }
-
-  gsap.to("#pg3_2cont", {
-    scrollTrigger: {
-      trigger: "#pg3cont",
-      start: "25% center",
-      end: "30% center",
-      scrub: 1,
-      onEnter: () => {
-        document.querySelector("#pg3_2cont").scrollIntoView({ behavior: "smooth" });
-      }
-    },
-    rotate: "0deg",
-    opacity: 1,
-    ease: "power2.inOut"
-  });
-
-  gsap.to("#allcont", {
-    scrollTrigger: {
-      trigger: "#pg3cont",
-      start: "23% center",
-      end: "28% center",
+      trigger: "#pg3_2cont",
+      start: "top 80%",
+      end: "bottom 20%",
       scrub: 1
     },
-    backgroundColor: "#48bb78",
-    ease: "power2.inOut"
+    y: 100,
+    opacity: 0,
+    stagger: 0.2,
+    ease: "power2.out"
   });
 
   gsap.to("#pg-4", {
     scrollTrigger: {
       trigger: "#pg3cont",
-      start: "70% 70%",
-      end: "70% 70%",
-      scrub: 0.2,
+      start: "bottom bottom",
+      end: "bottom center",
+      scrub: 1,
+      onEnter: () => {
+        document.querySelector("#pg-4").style.display = "block";
+      }
     },
-    display: "none",
+    visibility: "visible",
+    ease: "power2.inOut"
   });
 }
 
@@ -150,97 +83,62 @@ gsap.to("svg path", {
 });
 let q = 0
 
-  gsap.to(".circle",{
-    rotate: "360deg",
-    scrollTrigger:{
-      trigger: "#pg2cont",
-      start: "top top",
-      end: "bottom bottom",
-      scrub: 1,
-    },
-    ease: "linear"
-  })
-  gsap.to("#innercircle",{
-    width:"100%",
-    height:"100%",
-    opacity:1,
-    scrollTrigger:{
-      trigger: "#pg2cont",
-      start: "0% top",
-      end: "100% top",
-      scrub: 0.1,
-    },
-    ease: "linear"
-  })
+gsap.registerPlugin(ScrollTrigger);
 
-  if(screen.width>768){
-  gsap.to("#techss",{
-    translateY:"4vh",
-    opacity:1,
-    scale:1,
-    scrollTrigger:{
-      trigger: "#pg2cont",
-      start: "0% top",
-      end: "100% top",
-      scrub: 0.1,
-    },
-    stagger:0.55
-  })
-}else if(screen.width<768){
-  document.querySelector(".circle").style.zIndex = "1000"
-  gsap.to("#techss",{
-    translateY:"-45vh",
-    opacity:1,
-    scale:1,
-    scrollTrigger:{
-      trigger: "#pg2cont",
-      start: "0% top",
-      end: "100% top",
-      scrub: 0.1,
-    },
-    stagger:0.55
-  })
-}
+gsap.to(".circle", {
+  boxShadow: "0 0 30px 10px green",
+  duration: 2,
+  repeat: -1,
+  yoyo: true,
+  ease: "sine.inOut"
+});
 
-  const dibbas = document.querySelectorAll('.dibbas');
+const dibbas = document.querySelectorAll('.dibbas');
 
-  dibbas.forEach(dibba => {
-    dibba.addEventListener('mouseenter', (e) => {
-      const rect = dibba.getBoundingClientRect();
-      const circle = dibba.querySelector('.absolute');      
+dibbas.forEach(dibba => {
+  dibba.addEventListener('mouseenter', (e) => {
+    const rect = dibba.getBoundingClientRect();
+    const circle = dibba.querySelector('.absolute');      
 
-      const x = ((e.clientX - rect.left) / rect.width) * 100;
-      const y = ((e.clientY - rect.top) / rect.height) * 100;
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
 
-      circle.style.width = '0px';
-      circle.style.opacity = 1;
-      circle.style.height = '0px';
-      circle.style.left = x + '%';
-      circle.style.top = y + '%';
+    circle.style.width = '0px';
+    circle.style.opacity = 1;
+    circle.style.height = '0px';
+    circle.style.left = x + '%';
+    circle.style.top = y + '%';
 
-      requestAnimationFrame(() => {
-        circle.style.transition = 'width 1s ease-in, height 1s ease-in';
-        circle.style.width = '3000px';
-        circle.style.height = '3000px';
-      });
-    });
-
-    dibba.addEventListener('mouseleave', (e) => {
-      const circle = dibba.querySelector('.absolute');
-
-      circle.style.transition = 'width 0.3s ease-in, height 0.3s ease-in';
-      circle.style.width = '0px';
-      circle.style.height = '0px';
-      circle.style.opacity = 0;
+    requestAnimationFrame(() => {
+      circle.style.transition = 'width 1s ease-in, height 1s ease-in';
+      circle.style.width = '3000px';
+      circle.style.height = '3000px';
     });
   });
+
+  dibba.addEventListener('mouseleave', (e) => {
+    const circle = dibba.querySelector('.absolute');
+
+    circle.style.transition = 'width 0.3s ease-in, height 0.3s ease-in';
+    circle.style.width = '0px';
+    circle.style.height = '0px';
+    circle.style.opacity = 0;
+  });
+});
 
 const masterTl = gsap.timeline({
     scrollTrigger: {
         trigger: "#pg1cont",
         start: "top top",
         end: "40% top",
-        scrub: 1
+        scrub: 1,
+        onComplete: () => {
+            gsap.to("#imgcont", {
+                opacity: 0,
+                display: "none",
+                duration: 0.5
+            });
+        }
     }
 });
 
@@ -298,89 +196,269 @@ masterTl
         opacity: 1,
         duration: 0.5
     }, "-=0.5")
-
-    .to({}, {duration: 1})
-
+    .to({}, {duration: 0.5})
+    .to("#imgcont", {
+        rotate: "90deg",
+        duration: 1.5,
+        ease: "power2.inOut"
+    })
+    .to("#imgcont", {
+        scale: 100,
+        translateX: "-470%",
+        duration: 2,
+        ease: "power2.inOut"
+    })
+    .to({}, {duration: 0.5})
     .to("#card1", {
         opacity: 1,
-        translateY: "0",
+        translateY: "30vh",
         rotateZ: "7deg",
-        duration: 1,
+        duration: 5,
         ease: "power2.out"
     })
     .to("#card2", {
         opacity: 1,
-        translateY: "0",
+        translateY: "30vh",
         rotateZ: "-9deg",
-        duration: 1,
+        duration: 4,
         ease: "power2.out"
     }, "-=0.5")
     .to("#card3", {
         opacity: 1,
-        translateY: "0",
+        translateY: "30vh",
         rotateZ: "2deg",
-        duration: 1,
+        duration: 2.5,
         ease: "power2.out"
     }, "-=0.5")
     .to("#card4", {
         opacity: 1,
-        translateY: "0",
+        translateY: "30vh",
         rotateZ: "-1deg",
-        duration: 1,
-        ease: "power2.out"
+        duration: 4.5,
+        ease: "power2.out",
     }, "-=0.5");
-    gsap.to("#ExtraSpace",{
-   translateY:"-10vh",
-    scrollTrigger:{
-        trigger:"#pg1cont",
-        start:"105% top",
-        end:"125% top",
-        scrub:1,
-        }
-})
 
-function initializePage2() {
-  // Set initial styles
-  const pg2cont = document.querySelector("#pg2cont");
-  const circle = document.querySelector(".circle");
-  const pg3cont = document.querySelector("#pg3cont");
+gsap.to(["#card1", "#card2"], {
+    x: 1000,
+    scrollTrigger: {
+        trigger: "#pg1cont",
+        start: "40% top",
+        end: "80% top",
+        scrub: 1
+    }
+});
 
-  // Set height and display properties
-  pg2cont.style.height = "300vh";
-  circle.style.display = "block";
-  pg3cont.style.display = "flex";
+gsap.to(["#card4", "#card3"], {
+    x: -1000,
+    scrollTrigger: {
+        trigger: "#pg1cont", 
+        start: "40% top",
+        end: "80% top",
+        scrub: 1
+    }
+});
 
-  // Mobile-specific animations
-  if (screen.width <= 768) {
-    gsap.to("#techss", {
-      translateY: "-45vh",
-      opacity: 1,
-      scale: 1,
-      scrollTrigger: {
-        trigger: "#pg2cont",
-        start: "0% top",
-        end: "100% top",
-        scrub: 0.1,
-      },
-      stagger: 0.55
-    });
-  } else {
-    gsap.to("#techss", {
-      translateY: "4vh",
-      opacity: 1,
-      scale: 1,
-      scrollTrigger: {
-        trigger: "#pg2cont",
-        start: "0% top",
-        end: "100% top",
-        scrub: 0.1,
-      },
-      stagger: 0.55
-    });
+gsap.to(["#card1", "#card2", "#card3", "#card4"], {
+  hidden: true,
+  duration: 1,
+  ease: "power2.out",
+  scrollTrigger: {
+    trigger: "#pg1cont",
+    start: "80% top",
+    end: "90% top",
+    scrub: 1
   }
+});
 
-  baadwaale();
-}
+gsap.set("#getstarted", {
+  opacity: 0,
+  scale: 0.8,
+  pointerEvents: "none"
+});
+
+gsap.to("#getstarted", {
+  scrollTrigger: {
+    trigger: "#pg1cont",
+    start: "50% top",
+    end: "150% top",
+    scrub: 1,
+    onEnter: () => {
+      document.querySelector("#getstarted").style.pointerEvents = "auto";
+      gsap.to(["#strng", ".plts", "#card1", "#card2", "#card3", "#card4", ".circle"], {
+        opacity: 0,
+        duration: 0.5,
+        display: "none"
+      });
+    },
+    onLeave: () => {
+      document.querySelector("#getstarted").style.pointerEvents = "none";
+    },
+    onEnterBack: () => {
+      document.querySelector("#getstarted").style.pointerEvents = "auto";
+      gsap.to(["#strng", ".plts", "#card1", "#card2", "#card3", "#card4", ".circle"], {
+        opacity: 0,
+        duration: 0.5,
+        display: "none"
+      });
+    },
+    onLeaveBack: () => {
+      document.querySelector("#getstarted").style.pointerEvents = "none";
+      gsap.to(["#strng", ".plts", "#card1", "#card2", "#card3", "#card4", ".circle"], {
+        opacity: 1,
+        duration: 0.5,
+        display: "block"
+      });
+    }
+  },
+  scale: 2.7,
+  y: "30vh",
+  opacity: 1,
+  duration: 1,
+  ease: "power2.inOut"
+});
+
+gsap.set("#pg3cont", {
+  opacity: 0,
+  display: "none",
+  visibility: "hidden",
+  zIndex: 1000
+});
+
+gsap.set([".step-item"], { 
+  opacity: 0, 
+  y: 100,
+  scale: 0.8
+});
+
+const stepsTimeline = gsap.timeline({
+  scrollTrigger: {
+    trigger: "#pg1cont",
+    start: "85% top",
+    end: "700% top",
+    scrub: 3,
+    pin: true,
+    pinSpacing: true,
+    anticipatePin: 1,
+    onEnter: () => {
+      gsap.to(["#strng", ".plts", "#card1", "#card2", "#card3", "#card4", ".circle"], {
+        opacity: 0,
+        duration: 0.5,
+        display: "none"
+      });
+    }
+  }
+});
+
+stepsTimeline
+  .to(".step-item", {
+    opacity: 1,
+    y: 0,
+    scale: 0.8,
+    stagger: 0.2,
+    duration: 2,
+    ease: "power2.out"
+  })
+  .to(".step-item:not(:nth-child(1))", {
+    opacity: 0.2,
+    scale: 0.6,
+    filter: "blur(2px)",
+    duration: 1
+  })
+  .to(".step-1-content", {
+    scale: 1,
+    y: -20,
+    duration: 1
+  }, "<")
+  .to(".step-item:nth-child(1)", {
+    y: -150,
+    opacity: 0.2,
+    scale: 0.6,
+    filter: "blur(2px)",
+    duration: 0.8
+  })
+  .to(".step-item:nth-child(2)", {
+    y: -20,
+    opacity: 1,
+    scale: 0.8,
+    filter: "blur(0px)",
+    duration: 0.8
+  }, "<")
+  .to(".step-2-content", {
+    scale: 1,
+    y: -20,
+    opacity: 1,
+    duration: 0.8
+  })
+  .to(".step-item:nth-child(2)", {
+    y: -150,
+    opacity: 0.2,
+    scale: 0.6,
+    filter: "blur(2px)",
+    duration: 0.8
+  })
+  .to(".step-item:nth-child(3)", {
+    y: -20,
+    opacity: 1,
+    scale: 0.8,
+    filter: "blur(0px)",
+    duration: 0.8
+  }, "<")
+  .to(".step-3-content", {
+    scale: 1,
+    y: -20,
+    duration: 0.8
+  }, "<")
+  .to(".step-item:nth-child(3)", {
+    y: -150,
+    opacity: 0.2,
+    scale: 0.6,
+    filter: "blur(2px)",
+    duration: 0.8
+  })
+  .to(".step-item:nth-child(4)", {
+    y: -150,
+    opacity: 1,
+    scale: 0.8,
+    filter: "blur(0px)",
+    duration: 0.8
+  }, "<")
+  .to(".step-4-content", {
+    scale: 1,
+    y: -20,
+    duration: 0.8
+  }, "<")
+  .to(".step-item:nth-child(4)", {
+    y: -150,
+    opacity: 0,
+    duration: 0.8
+  }, "+=1")
+  .to(["#getstarted h2"], {
+    opacity: 0,
+    scale: 0.8,
+    duration: 0.5
+  })
+  .to("#getstarted", {
+    opacity: 0,
+    duration: 0.5,
+    onComplete: () => {
+      gsap.to("#pg3cont", {
+        opacity: 1,
+        display: "flex",
+        visibility: "visible",
+        duration: 0.8
+      });
+    }
+  });
+
+gsap.to("#ExtraSpace", {
+  translateY: "-10vh",
+  scrollTrigger: {
+    trigger: "#pg3cont",
+    start: "top center",
+    end: "bottom center",
+    scrub: 1
+  }
+});
 
 ScrollTrigger.create({
   trigger: "#pg1cont",
@@ -392,7 +470,6 @@ ScrollTrigger.create({
 let lastRealIndex = 0;
 
 function showTextForImage(imageNumber) {
-  // Hide all text elements first
   document.querySelectorAll('.element').forEach(el => {
     el.style.opacity = '0';
     el.style.transition = 'opacity 0.3s ease-in-out';
@@ -432,7 +509,7 @@ window.addEventListener('load', () => {
 
 var swiper = new Swiper(".mySwiper", {
   slidesPerView: 1,
-  spaceBetween: 30,
+  spaceBetween: 10,
   loop: true,
   navigation: {
     nextEl: ".swiper-button-next",
@@ -496,3 +573,134 @@ function navigateToCard(cardNumber) {
         }, 0.3);
     }
 }
+
+gsap.to(".element", {
+    opacity: 1,
+    stagger: 0.2,
+    duration: 1,
+    ease: "power2.out"
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const elements = document.querySelectorAll('.element');
+    const totalElements = elements.length;
+    
+    elements.forEach((el, index) => {
+        const angle = (index * (360 / totalElements));
+        el.style.setProperty('--angle', `${angle}deg`);
+        
+        el.style.opacity = '1';
+    });
+
+    gsap.to('.element', {
+        rotation: 360,
+        transformOrigin: "center center",
+        duration: 20,
+        repeat: -1,
+        ease: "none",
+        stagger: {
+            each: 0,
+            from: "start"
+        }
+    });
+});
+
+gsap.utils.toArray('.android-nav-btn').forEach(btn => {
+  btn.addEventListener('mouseenter', () => {
+    gsap.to(btn, {
+      scale: 1.2,
+      duration: 0.3,
+      ease: "back.out(1.7)"
+    });
+  });
+  
+  btn.addEventListener('mouseleave', () => {
+    gsap.to(btn, {
+      scale: 1,
+      duration: 0.2,
+      ease: "power2.out"
+    });
+  });
+});
+
+gsap.from(".step-item", {
+  scrollTrigger: {
+    trigger: "#pg3_2cont",
+    start: "top 80%",
+    end: "bottom 20%",
+    scrub: 1
+  },
+  y: 100,
+  opacity: 0,
+  stagger: 0.2,
+  ease: "power2.out"
+});
+
+gsap.to("#main", {
+  backgroundPosition: `50% ${window.innerHeight/2}px`,
+  ease: "none",
+  scrollTrigger: {
+    trigger: "#main",
+    start: "top top",
+    end: "bottom top",
+    scrub: true
+  }
+});
+
+gsap.utils.toArray('.text-content').forEach(text => {
+  gsap.from(text, {
+    scrollTrigger: {
+      trigger: text,
+      start: "top 80%",
+      end: "bottom 20%"
+    },
+    duration: 1,
+    y: 50,
+    opacity: 0,
+    ease: "power2.out"
+  });
+});
+
+gsap.utils.toArray('.carad').forEach(card => {
+  card.addEventListener('mouseenter', () => {
+    gsap.to(card, {
+      scale: 1.05,
+      duration: 0.3,
+      ease: "power2.out"
+    });
+  });
+  
+  card.addEventListener('mouseleave', () => {
+    gsap.to(card, {
+      scale: 1,
+      duration: 0.2,
+      ease: "power2.in"
+    });
+  });
+});
+
+window.addEventListener('load', () => {
+  document.querySelectorAll('.element').forEach(el => {
+    el.classList.add('text-visible');
+    el.style.opacity = '1';
+    el.style.visibility = 'visible';
+  });
+  
+  document.querySelector('.circle').style.display = 'block';
+  document.querySelector('.circle').style.visibility = 'visible';
+});
+
+gsap.set(".subpoints-section", {
+  opacity: 0,
+  y: 20,
+  display: "none"
+});
+
+
+gsap.to("#getstarted h2", {
+    scale: 15,
+    duration: 1,
+    yoyo: true,
+    repeat: -1,
+    ease: "power1.inOut"
+});
