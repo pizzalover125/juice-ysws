@@ -131,7 +131,14 @@ const masterTl = gsap.timeline({
         trigger: "#pg1cont",
         start: "top top",
         end: "40% top",
-        scrub: 1
+        scrub: 1,
+        onComplete: () => {
+            gsap.to("#imgcont", {
+                opacity: 0,
+                display: "none",
+                duration: 0.5
+            });
+        }
     }
 });
 
@@ -277,7 +284,7 @@ gsap.to("#getstarted", {
     scrub: 1,
     onEnter: () => {
       document.querySelector("#getstarted").style.pointerEvents = "auto";
-      gsap.to(["#strng", ".plts", "#card1", "#card2", "#card3", "#card4", ".circle", "#pg3cont", "#ExtraSpace"], {
+      gsap.to(["#strng", ".plts", "#card1", "#card2", "#card3", "#card4", ".circle"], {
         opacity: 0,
         duration: 0.5,
         display: "none"
@@ -288,7 +295,7 @@ gsap.to("#getstarted", {
     },
     onEnterBack: () => {
       document.querySelector("#getstarted").style.pointerEvents = "auto";
-      gsap.to(["#strng", ".plts", "#card1", "#card2", "#card3", "#card4", ".circle", "#pg3cont", "#ExtraSpace"], {
+      gsap.to(["#strng", ".plts", "#card1", "#card2", "#card3", "#card4", ".circle"], {
         opacity: 0,
         duration: 0.5,
         display: "none"
@@ -296,7 +303,7 @@ gsap.to("#getstarted", {
     },
     onLeaveBack: () => {
       document.querySelector("#getstarted").style.pointerEvents = "none";
-      gsap.to(["#strng", ".plts", "#card1", "#card2", "#card3", "#card4", ".circle", "#pg3cont", "#ExtraSpace"], {
+      gsap.to(["#strng", ".plts", "#card1", "#card2", "#card3", "#card4", ".circle"], {
         opacity: 1,
         duration: 0.5,
         display: "block"
@@ -304,12 +311,18 @@ gsap.to("#getstarted", {
     }
   },
   scale: 2.7,
-  translateY: "30vh",
+  y: "30vh",
   opacity: 1,
   duration: 1,
   ease: "power2.inOut"
 });
 
+gsap.set("#pg3cont", {
+  opacity: 0,
+  display: "none",
+  visibility: "hidden",
+  zIndex: 1000
+});
 
 gsap.set([".step-item"], { 
   opacity: 0, 
@@ -317,28 +330,20 @@ gsap.set([".step-item"], {
   scale: 0.8
 });
 
-
 const stepsTimeline = gsap.timeline({
   scrollTrigger: {
     trigger: "#pg1cont",
     start: "85% top",
-    end: "500% top",
-    scrub: 2,
+    end: "700% top",
+    scrub: 3,
     pin: true,
     pinSpacing: true,
     anticipatePin: 1,
     onEnter: () => {
-      gsap.to(["#strng", ".plts", "#card1", "#card2", "#card3", "#card4", ".circle", "#pg3cont", "#ExtraSpace"], {
+      gsap.to(["#strng", ".plts", "#card1", "#card2", "#card3", "#card4", ".circle"], {
         opacity: 0,
         duration: 0.5,
         display: "none"
-      });
-    },
-    onLeaveBack: () => {
-      gsap.to(["#strng", ".plts", "#card1", "#card2", "#card3", "#card4", ".circle", "#pg3cont", "#ExtraSpace"], {
-        opacity: 1,
-        duration: 0.5,
-        display: "block"
       });
     }
   }
@@ -353,7 +358,6 @@ stepsTimeline
     duration: 2,
     ease: "power2.out"
   })
-  
   .to(".step-item:not(:nth-child(1))", {
     opacity: 0.2,
     scale: 0.6,
@@ -365,7 +369,6 @@ stepsTimeline
     y: -20,
     duration: 1
   }, "<")
-  
   .to(".step-item:nth-child(1)", {
     y: -150,
     opacity: 0.2,
@@ -386,7 +389,6 @@ stepsTimeline
     opacity: 1,
     duration: 0.8
   })
-  
   .to(".step-item:nth-child(2)", {
     y: -150,
     opacity: 0.2,
@@ -406,7 +408,6 @@ stepsTimeline
     y: -20,
     duration: 0.8
   }, "<")
-  
   .to(".step-item:nth-child(3)", {
     y: -150,
     opacity: 0.2,
@@ -415,7 +416,7 @@ stepsTimeline
     duration: 0.8
   })
   .to(".step-item:nth-child(4)", {
-    y: -20,
+    y: -150,
     opacity: 1,
     scale: 0.8,
     filter: "blur(0px)",
@@ -426,24 +427,33 @@ stepsTimeline
     y: -20,
     duration: 0.8
   }, "<")
-  
   .to(".step-item:nth-child(4)", {
     y: -150,
     opacity: 0,
     duration: 0.8
   }, "+=1")
-  
-  .to(["#pg3cont", "#ExtraSpace"], {
-    opacity: 1,
+  .to(["#getstarted h2"], {
+    opacity: 0,
+    scale: 0.8,
+    duration: 0.5
+  })
+  .to("#getstarted", {
+    opacity: 0,
     duration: 0.5,
-    display: "block"
+    onComplete: () => {
+      gsap.to("#pg3cont", {
+        opacity: 1,
+        display: "flex",
+        visibility: "visible",
+        duration: 0.8
+      });
+    }
   });
-
 
 gsap.to("#ExtraSpace", {
   translateY: "-10vh",
   scrollTrigger: {
-    trigger: "#pg3cont",  
+    trigger: "#pg3cont",
     start: "top center",
     end: "bottom center",
     scrub: 1
