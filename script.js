@@ -204,7 +204,7 @@ masterTl
     })
     .to("#imgcont", {
         scale: 100,
-        translateX: "-470%",
+        translateX: "-180%",
         duration: 2,
         ease: "power2.inOut"
     })
@@ -428,14 +428,24 @@ stepsTimeline
     duration: 0.8
   }, "<")
   .to(".step-item:nth-child(4)", {
-    y: -150,
-    opacity: 0,
-    duration: 0.8
-  }, "+=1")
-  .to(["#getstarted h2"], {
-    opacity: 0,
-    scale: 0.8,
-    duration: 0.5
+    y: -150, 
+    opacity: 0, 
+    duration: 0.8,
+    onComplete: () => {
+=      const pg3_3cont = document.getElementById("pg3_3cont");
+      const pg3_3contTop = pg3_3cont.offsetTop;
+
+      gsap.to(window, {
+        duration: 1, 
+        scrollTo: pg3_3contTop,
+        ease: "power2.inOut"
+      });
+
+      gsap.to(pg3_3cont, {
+        height: "100vh", 
+        width: "100vw" 
+      });
+    }
   })
   .to("#getstarted", {
     opacity: 0,
@@ -450,6 +460,7 @@ stepsTimeline
     }
   });
 
+
 gsap.to("#ExtraSpace", {
   translateY: "-10vh",
   scrollTrigger: {
@@ -459,7 +470,6 @@ gsap.to("#ExtraSpace", {
     scrub: 1
   }
 });
-
 ScrollTrigger.create({
   trigger: "#pg1cont",
   start: "bottom top",
