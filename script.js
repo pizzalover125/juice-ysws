@@ -432,7 +432,7 @@ stepsTimeline
     opacity: 0, 
     duration: 0.8,
     onComplete: () => {
-=      const pg3_3cont = document.getElementById("pg3_3cont");
+      const pg3_3cont = document.getElementById("pg3_3cont");
       const pg3_3contTop = pg3_3cont.offsetTop;
 
       gsap.to(window, {
