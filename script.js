@@ -204,7 +204,7 @@ masterTl
     })
     .to("#imgcont", {
         scale: 100,
-        translateX: "-470%",
+        translateX: "-180%",
         duration: 2,
         ease: "power2.inOut"
     })
